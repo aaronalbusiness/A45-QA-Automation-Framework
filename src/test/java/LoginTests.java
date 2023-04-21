@@ -13,7 +13,7 @@ public class LoginTests extends BaseTest {
     @Test
 
     // Defines a method named "loginInvalidEmailValidPasssword"
-    public void loginInvalidEmailValidPasssword() {
+    public void loginInvalidEmailValidPassswordTest() {
 
 //      Added ChromeOptions argument below to fix websocket error
         ChromeOptions options = new ChromeOptions();
@@ -51,7 +51,7 @@ public class LoginTests extends BaseTest {
     }
 
     @Test
-    public void successfulLogin() {
+    public void loginSuccessfulTest() {
 
 //      Added ChromeOptions argument below to fix websocket error
         ChromeOptions options = new ChromeOptions();
