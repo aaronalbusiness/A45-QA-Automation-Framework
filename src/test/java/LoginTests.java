@@ -39,6 +39,7 @@ public class LoginTests extends BaseTest {
 
         Assert.assertEquals(driver.getCurrentUrl(), url);
 
+        driver.quit();
 
     }
 
@@ -69,7 +70,10 @@ public class LoginTests extends BaseTest {
         submitButton.click();
 
         //WebElement avatarIcon = driver.findElement(By.cssSelector()xpath("[alt= 'Avatar of student']"));
-        //Assert.assertTrue(avatarIcon.isDisplayed());
+        WebElement avatarImage = driver.findElement(By.cssSelector("img.avatar"));
+        Assert.assertTrue(avatarImage.isDisplayed());
+
+        driver.quit();
     }
     @Test
     public static void loginEmptyEmailPasswordTest() {
@@ -84,6 +88,6 @@ public class LoginTests extends BaseTest {
         String url = "https://bbb.testpro.io/";
         driver.get(url);
         Assert.assertEquals(driver.getCurrentUrl(), url);
-        //driver.quit();
+        driver.quit();
     }
 }
