@@ -122,6 +122,11 @@ public class LoginTests extends BaseTest {
 
         String url = "https://bbb.testpro.io/";
         driver.get(url);
+
+//        WebElement submitButton = driver.findElement(By.cssSelector("button[type='submit']"));
+//        submitButton.click();
+
+
         Assert.assertEquals(driver.getCurrentUrl(), url);
         driver.quit();
     }
