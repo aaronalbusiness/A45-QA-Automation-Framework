@@ -1,7 +1,5 @@
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -14,9 +12,9 @@ public class Homework17 extends BaseTest {
 
         String newSongAddedNotificationText = "Added 1 song into";
 
-        navigateToPage();
-        provideEmail("aaronalbusiness@gmail.com");
-        providePassword("te$t$tudent");
+        openLoginUrl();
+        enterEmail("aaronalbusiness@gmail.com");
+        enterPassword("te$t$tudent");
         clickSubmit();
         searchSong("Pluto");
         clickViewAllBtn();
