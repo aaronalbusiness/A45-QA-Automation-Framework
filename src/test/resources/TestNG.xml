@@ -8,7 +8,7 @@
             <class name="LoginTests"/>
             <class name="BaseTest"/>
             <class name="RegistrationNavigation"/>
-            <class name="Homework17"/>
+            <class name="AddSongToPlaylist"/>
         </classes>
     </test>
 </suite>

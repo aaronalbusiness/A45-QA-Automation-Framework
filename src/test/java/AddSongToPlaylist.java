@@ -4,7 +4,7 @@ import org.testng.annotations.Test;
 
 
 
-public class Homework17 extends BaseTest {
+public class AddSongToPlaylist extends BaseTest {
 
     @Test
     public void addSongToPlaylist() throws InterruptedException {
@@ -15,7 +15,7 @@ public class Homework17 extends BaseTest {
         enterEmail("aaronalbusiness@gmail.com");
         enterPassword("te$t$tudent");
         clickSubmit();
-        searchSong("Dark Days");
+        searchSong("Pluto");
         clickViewAllBtn();
         selectFirstSongResult();
         clickAddToBtn();
