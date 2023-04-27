@@ -15,7 +15,7 @@ public class AddSongToPlaylist extends BaseTest {
         enterEmail("aaronalbusiness@gmail.com");
         enterPassword("te$t$tudent");
         clickSubmit();
-        searchSong("Pluto");
+        searchSong("Reactor");
         clickViewAllBtn();
         selectFirstSongResult();
         clickAddToBtn();
