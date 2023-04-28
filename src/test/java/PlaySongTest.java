@@ -50,6 +50,7 @@ public class PlaySongTest {
     public boolean isSongPlaying() {
         WebElement soundBar = driver.findElement(By.xpath("//div[@data-testid='sound-bar-play']"));
         return soundBar.isDisplayed();
+
     }
 
 
