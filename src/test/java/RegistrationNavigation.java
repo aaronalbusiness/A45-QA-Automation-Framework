@@ -29,8 +29,5 @@ public class RegistrationNavigation extends BaseTest {
         Assert.assertEquals(driver.getCurrentUrl(), registrationUrl);
         //driver.quit();
 
-
-
-
     }
 }
