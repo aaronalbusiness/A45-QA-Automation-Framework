@@ -14,7 +14,6 @@ public class LoginTests extends BaseTest {
     @Test
     public void loginSuccessfulTest() {
 
-
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
 
@@ -42,6 +41,7 @@ public class LoginTests extends BaseTest {
 
         driver.quit();
     }
+
     @Test
     public void loginInvalidEmailValidPassswordTest() {
 
