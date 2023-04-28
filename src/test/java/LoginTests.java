@@ -40,7 +40,7 @@ public class LoginTests extends BaseTest {
         WebElement avatarImage = driver.findElement(By.cssSelector("img.avatar"));
         Assert.assertTrue(avatarImage.isDisplayed());
 
-        //driver.quit();
+        driver.quit();
     }
     @Test
     public void loginInvalidEmailValidPassswordTest() {
