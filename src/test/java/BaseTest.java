@@ -33,7 +33,7 @@ public class BaseTest {
 
     @AfterMethod
     public void tearDownBrowser() {
-        //driver.quit();
+        driver.quit();
     }
 
     public void openLoginUrl() {

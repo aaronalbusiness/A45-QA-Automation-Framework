@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class RegistrationNavigation extends BaseTest {
+public class RegistrationNavigationTest extends BaseTest {
     @Test
     public void registrationNavigation() {
 
@@ -27,10 +27,7 @@ public class RegistrationNavigation extends BaseTest {
 
         String registrationUrl = "https://bbb.testpro.io/registration.php";
         Assert.assertEquals(driver.getCurrentUrl(), registrationUrl);
-        //driver.quit();
-
-
-
+        driver.quit();
 
     }
 }
