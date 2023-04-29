@@ -27,7 +27,7 @@ public class RegistrationNavigationTest extends BaseTest {
 
         String registrationUrl = "https://bbb.testpro.io/registration.php";
         Assert.assertEquals(driver.getCurrentUrl(), registrationUrl);
-        driver.quit();
+        //driver.quit();
 
     }
 }
