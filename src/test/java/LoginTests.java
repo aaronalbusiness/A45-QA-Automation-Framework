@@ -10,7 +10,6 @@ import java.time.Duration;
 
 public class LoginTests extends BaseTest {
 
-
     @Test
     public void loginSuccessfulTest() {
 
@@ -44,8 +43,6 @@ public class LoginTests extends BaseTest {
 
     @Test
     public void loginInvalidEmailValidPassswordTest() {
-
-
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
 
@@ -69,7 +66,6 @@ public class LoginTests extends BaseTest {
         submitButton.click();
 
         Assert.assertEquals(driver.getCurrentUrl(), url);
-
         driver.quit();
     }
 
@@ -100,10 +96,8 @@ public class LoginTests extends BaseTest {
         submitButton.click();
 
         Assert.assertEquals(driver.getCurrentUrl(), url);
-
         driver.quit();
     }
-
 
 
     @Test
@@ -117,11 +111,6 @@ public class LoginTests extends BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
         String url = "https://bbb.testpro.io/";
-        driver.get(url);
-
-//        WebElement submitButton = driver.findElement(By.cssSelector("button[type='submit']"));
-//        submitButton.click();
-
 
         Assert.assertEquals(driver.getCurrentUrl(), url);
         driver.quit();
