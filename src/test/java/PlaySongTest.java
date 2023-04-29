@@ -17,6 +17,9 @@ public class PlaySongTest {
         login("demo@class.com", "te$t$tudent");
         playSong();
         Assert.assertTrue(isSongPlaying());
+        Thread.sleep(2000); // Wait for 10 seconds
+        driver.quit();
+
     }
 
     public void login(String email, String password) {
@@ -28,6 +31,7 @@ public class PlaySongTest {
 
         String url = "https://bbb.testpro.io/";
         driver.get(url);
+
 
         WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
         emailField.sendKeys(email);
@@ -52,6 +56,4 @@ public class PlaySongTest {
         return soundBar.isDisplayed();
 
     }
-
-
 }
