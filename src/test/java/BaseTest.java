@@ -7,21 +7,27 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Parameters;
 
 import java.time.Duration;
 
 
 public class BaseTest {
-    WebDriver driver;
+    public static WebDriver driver= null;
+
+    public static String url = "";
 
     @BeforeSuite
     static void setupClass() {
+
         WebDriverManager.chromedriver().setup();
     }
 
 
     @BeforeMethod
-    public void setupBrowser() {
+    @Parameters({"BaseURL"})
+
+    public void setupBrowser(String BaseURL) {
         //      Added ChromeOptions argument below to fix websocket error
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
@@ -29,23 +35,25 @@ public class BaseTest {
 
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        url = BaseURL;
+        navigateToPage();
     }
 
     @AfterMethod
-    public void tearDownBrowser() {
-        driver.quit();
+    public void tearDownBrowser() {driver.quit();
     }
 
-    public void openLoginUrl() {
-        String url = "http://bbb.testpro.io";
-        driver.get(url);
+    public void navigateToPage() {driver.get(url);
+
     }
     public void enterEmail(String email)  {
         WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
+        emailField.click(); //not needed
+        emailField.clear();
         emailField.sendKeys(email);
 
     }
-    public void enterPassword(String password) {
+    public static void enterPassword(String password) {
         WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
         passwordField.sendKeys(password);
     }
@@ -64,7 +72,6 @@ public class BaseTest {
         WebElement viewAllSearchResults = driver.findElement(By.cssSelector("button[data-test='view-all-songs-btn'][rounded][small][orange]"));
         viewAllSearchResults.click();
         Thread.sleep(2000);
-
     }
 
     public void selectFirstSongResult () throws InterruptedException {

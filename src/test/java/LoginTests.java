@@ -87,7 +87,7 @@ public class LoginTests extends BaseTest {
         driver.get(url);
 
         WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
-         emailField.click();
+        emailField.click();
         emailField.clear();
         emailField.sendKeys("demo@class.com");
 
