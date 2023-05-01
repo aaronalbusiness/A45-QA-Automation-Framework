@@ -19,11 +19,9 @@ public class LoginTests extends BaseTest {
                 {"demo@class.com", ""},
                 {"", ""}
         };
-
 }
-
-    @Test (dataProvider = "IncorrectLoginProvider", enabled = true, priority = 0, description = "Different logins from dataprovider")
-    public void loginInvalidEmailInvalidPassswordTest(String userName, String userPassword) {
+    @Test (dataProvider = "IncorrectLoginProviders", enabled = true, priority = 0, description = "Different logins from dataprovider")
+    public void incorrectLoginProvidersTest(String userName, String userPassword) {
 
         provideEmail(userName);
         providePassword(userPassword);
@@ -31,8 +29,7 @@ public class LoginTests extends BaseTest {
 
         Assert.assertEquals(driver.getCurrentUrl(), url);
     }
-
-
+    
     @Test
     public void loginSuccessfulTest() {
 
