@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.ITest;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
@@ -17,31 +18,6 @@ public class BaseTest {
 
     public static String url = "";
 
-    @BeforeSuite
-    static void setupClass() {
-
-        WebDriverManager.chromedriver().setup();
-    }
-
-
-    @BeforeMethod
-    @Parameters({"BaseURL"})
-
-    public void setupBrowser(String BaseURL) {
-        //      Added ChromeOptions argument below to fix websocket error
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-        options.addArguments("--disable-notifications");
-
-        driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        url = BaseURL;
-        navigateToPage();
-    }
-
-    @AfterMethod
-    public void tearDownBrowser() {driver.quit();
-    }
 
     public void navigateToPage() {driver.get(url);
 
@@ -98,9 +74,31 @@ public class BaseTest {
 
     }
 
+    @BeforeSuite
+    static void setupClass() {
+
+        WebDriverManager.chromedriver().setup();
+    }
+
+
+    @BeforeMethod
+    @Parameters({"BaseURL"})
+
+    public void setupBrowser(String BaseURL) {
+        //      Added ChromeOptions argument below to fix websocket error
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--disable-notifications");
+
+        driver = new ChromeDriver(options);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        url = BaseURL;
+        navigateToPage();
+    }
+
+    @AfterMethod
+    public void tearDownBrowser() {driver.quit();
+    }
+
+
 }
-
-
-
-
-
