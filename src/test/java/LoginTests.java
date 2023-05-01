@@ -5,10 +5,33 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.annotations.DataProvider;
+
 
 import java.time.Duration;
 
 public class LoginTests extends BaseTest {
+
+    @DataProvider(name = "IncorrectLoginProviders")
+    public static Object[][] getDataFromDataProviders() {
+        return new Object[][]{
+                {"NotexistingEmail.com", "NotExistingPassword"},
+                {"demo@class.com", ""},
+                {"", ""}
+        };
+
+}
+
+    @Test (dataProvider = "IncorrectLoginProvider", enabled = true, priority = 0, description = "Different logins from dataprovider")
+    public void loginInvalidEmailInvalidPassswordTest(String userName, String userPassword) {
+
+        provideEmail(userName);
+        providePassword(userPassword);
+        clickSubmit();
+
+        Assert.assertEquals(driver.getCurrentUrl(), url);
+    }
+
 
     @Test
     public void loginSuccessfulTest() {
@@ -38,7 +61,7 @@ public class LoginTests extends BaseTest {
         WebElement avatarImage = driver.findElement(By.cssSelector("img.avatar"));
         Assert.assertTrue(avatarImage.isDisplayed());
 
-        driver.quit();
+
     }
 
     @Test
@@ -66,7 +89,7 @@ public class LoginTests extends BaseTest {
         submitButton.click();
 
         Assert.assertEquals(driver.getCurrentUrl(), url);
-        driver.quit();
+
     }
 
     @Test
@@ -96,7 +119,7 @@ public class LoginTests extends BaseTest {
         submitButton.click();
 
         Assert.assertEquals(driver.getCurrentUrl(), url);
-        driver.quit();
+
     }
 
 
@@ -114,6 +137,6 @@ public class LoginTests extends BaseTest {
         driver.get(url);
 
         Assert.assertEquals(driver.getCurrentUrl(), url);
-        driver.quit();
+
     }
 }

@@ -4,7 +4,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.ITest;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
@@ -14,6 +13,8 @@ import java.time.Duration;
 
 
 public class BaseTest {
+
+
     public static WebDriver driver= null;
 
     public static String url = "";
@@ -22,14 +23,14 @@ public class BaseTest {
     public void navigateToPage() {driver.get(url);
 
     }
-    public void enterEmail(String email)  {
+    public void provideEmail(String email)  {
         WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
         emailField.click(); //not needed
         emailField.clear();
         emailField.sendKeys(email);
 
     }
-    public static void enterPassword(String password) {
+    public static void providePassword(String password) {
         WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
         passwordField.sendKeys(password);
     }
@@ -76,7 +77,6 @@ public class BaseTest {
 
     @BeforeSuite
     static void setupClass() {
-
         WebDriverManager.chromedriver().setup();
     }
 

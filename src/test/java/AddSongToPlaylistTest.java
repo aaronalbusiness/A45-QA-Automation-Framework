@@ -12,8 +12,8 @@ public class AddSongToPlaylistTest extends BaseTest {
         String newSongAddedNotificationText = "Added 1 song into";
 
         navigateToPage();
-        enterEmail("aaronalbusiness@gmail.com");
-        enterPassword("te$t$tudent");
+        provideEmail("aaronalbusiness@gmail.com");
+        providePassword("te$t$tudent");
         clickSubmit();
         searchSong("Reactor");
         clickViewAllBtn();
