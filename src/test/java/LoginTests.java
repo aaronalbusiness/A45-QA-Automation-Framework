@@ -38,7 +38,7 @@ public class LoginTests extends BaseTest {
         System.out.println("url: " + whatIsURL);
 
         Assert.assertEquals(driver.getCurrentUrl(), url);
-
+        driver.quit();
     }
 
     
@@ -68,8 +68,9 @@ public class LoginTests extends BaseTest {
         submitButton.click();
 
         WebElement avatarImage = driver.findElement(By.cssSelector("img.avatar"));
-        Assert.assertTrue(avatarImage.isDisplayed());
 
+        Assert.assertTrue(avatarImage.isDisplayed());
+        driver.quit();
 
     }
 
@@ -98,6 +99,7 @@ public class LoginTests extends BaseTest {
         submitButton.click();
 
         Assert.assertEquals(driver.getCurrentUrl(), url);
+        driver.quit();
 
     }
 
@@ -128,6 +130,7 @@ public class LoginTests extends BaseTest {
         submitButton.click();
 
         Assert.assertEquals(driver.getCurrentUrl(), url);
+        driver.quit();
 
     }
 
@@ -146,6 +149,7 @@ public class LoginTests extends BaseTest {
         driver.get(url);
 
         Assert.assertEquals(driver.getCurrentUrl(), url);
+        driver.quit();
 
     }
 }

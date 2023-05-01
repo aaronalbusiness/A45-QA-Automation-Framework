@@ -18,12 +18,17 @@ public class PlaySongTest {
         playSong();
         Assert.assertTrue(isSongPlaying());
         Thread.sleep(2000); // Wait for 10 seconds
+        driver.quit();
 
     }
 
     public void login(String email, String password) {
+        //      Added ChromeOptions argument below to fix websocket error
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
+
+        WebDriver driver = new ChromeDriver(options);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));

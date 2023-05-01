@@ -15,13 +15,14 @@ public class AddSongToPlaylistTest extends BaseTest {
         provideEmail("aaronalbusiness@gmail.com");
         providePassword("te$t$tudent");
         clickSubmit();
-        searchSong("Reactor");
+        searchSong("BossStatus");
         clickViewAllBtn();
         selectFirstSongResult();
         clickAddToBtn();
         choosePlaylist();
-        Assert.assertTrue(getNotificationText().contains(newSongAddedNotificationText));
 
+        Assert.assertTrue(getNotificationText().contains(newSongAddedNotificationText));
+        driver.quit();
     }
 
 }
