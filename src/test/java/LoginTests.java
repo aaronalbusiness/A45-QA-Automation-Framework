@@ -20,6 +20,19 @@ public class LoginTests extends BaseTest {
                 {"", ""}
         };
 }
+
+
+//    @Test (dataProvider = "IncorrectLoginProviders", enabled = true, priority = 0, description = "Different logins from dataprovider")
+//    public void incorrectLoginProvidersTest(String userName, String userPassword) {
+//        provideEmail(userName);
+//        providePassword(userPassword);
+//        clickSubmit();
+//        String currentUrl = driver.getCurrentUrl();
+//        System.out.println("Current URL: " + currentUrl);
+//        Assert.assertEquals(currentUrl, "https://bbb.testpro.io/");
+//    }
+
+
     @Test (dataProvider = "IncorrectLoginProviders", enabled = true, priority = 0, description = "Different logins from dataprovider")
     public void incorrectLoginProvidersTest(String userName, String userPassword) {
 
@@ -27,7 +40,13 @@ public class LoginTests extends BaseTest {
         providePassword(userPassword);
         clickSubmit();
 
+        String currentUrl = driver.getCurrentUrl();
+        String WhatIsURL = url;
+        System.out.println("Current URL: " + currentUrl);
+        System.out.println("url: " + WhatIsURL);
+
         Assert.assertEquals(driver.getCurrentUrl(), url);
+
     }
     
     @Test
