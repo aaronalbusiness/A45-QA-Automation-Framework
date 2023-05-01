@@ -23,7 +23,6 @@ public class LoginTests extends BaseTest {
         };
 }
 
-
     @Test (dataProvider = "IncorrectLoginProviders", enabled = true, priority = 0, description = "Different logins from dataprovider")
     public void incorrectLoginProvidersTest(Method method, String userName, String userPassword) {
 
@@ -42,24 +41,6 @@ public class LoginTests extends BaseTest {
 
     }
 
-
-
-
-//    @Test (dataProvider = "IncorrectLoginProviders", enabled = true, priority = 0, description = "Different logins from dataprovider")
-//    public void incorrectLoginProvidersTest(String userName, String userPassword) {
-//
-//        provideEmail(userName);
-//        providePassword(userPassword);
-//        clickSubmit();
-//
-//        String currentUrl = driver.getCurrentUrl();
-//        String whatIsURL = url;
-//        System.out.println("Current URL: " + currentUrl);
-//        System.out.println("url: " + whatIsURL);
-//
-//        Assert.assertEquals(driver.getCurrentUrl(), url);
-//
-//    }
     
     @Test
     public void loginSuccessfulTest() {
@@ -70,8 +51,8 @@ public class LoginTests extends BaseTest {
         WebDriver driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-       // String url = "https://bbb.testpro.io/";
-       // driver.get(url);
+        String url = "https://bbb.testpro.io/";
+        driver.get(url);
 
         WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
         emailField.click();
