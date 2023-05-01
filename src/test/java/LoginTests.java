@@ -8,6 +8,8 @@ import org.testng.annotations.Test;
 import org.testng.annotations.DataProvider;
 
 
+
+import java.lang.reflect.Method;
 import java.time.Duration;
 
 public class LoginTests extends BaseTest {
@@ -22,32 +24,42 @@ public class LoginTests extends BaseTest {
 }
 
 
-//    @Test (dataProvider = "IncorrectLoginProviders", enabled = true, priority = 0, description = "Different logins from dataprovider")
-//    public void incorrectLoginProvidersTest(String userName, String userPassword) {
-//        provideEmail(userName);
-//        providePassword(userPassword);
-//        clickSubmit();
-//        String currentUrl = driver.getCurrentUrl();
-//        System.out.println("Current URL: " + currentUrl);
-//        Assert.assertEquals(currentUrl, "https://bbb.testpro.io/");
-//    }
-
-
     @Test (dataProvider = "IncorrectLoginProviders", enabled = true, priority = 0, description = "Different logins from dataprovider")
-    public void incorrectLoginProvidersTest(String userName, String userPassword) {
+    public void incorrectLoginProvidersTest(Method method, String userName, String userPassword) {
+
+        System.out.println("Running test method: " + method.getName());
 
         provideEmail(userName);
         providePassword(userPassword);
         clickSubmit();
 
         String currentUrl = driver.getCurrentUrl();
-        String WhatIsURL = url;
+        String whatIsURL = url;
         System.out.println("Current URL: " + currentUrl);
-        System.out.println("url: " + WhatIsURL);
+        System.out.println("url: " + whatIsURL);
 
         Assert.assertEquals(driver.getCurrentUrl(), url);
 
     }
+
+
+
+
+//    @Test (dataProvider = "IncorrectLoginProviders", enabled = true, priority = 0, description = "Different logins from dataprovider")
+//    public void incorrectLoginProvidersTest(String userName, String userPassword) {
+//
+//        provideEmail(userName);
+//        providePassword(userPassword);
+//        clickSubmit();
+//
+//        String currentUrl = driver.getCurrentUrl();
+//        String whatIsURL = url;
+//        System.out.println("Current URL: " + currentUrl);
+//        System.out.println("url: " + whatIsURL);
+//
+//        Assert.assertEquals(driver.getCurrentUrl(), url);
+//
+//    }
     
     @Test
     public void loginSuccessfulTest() {
@@ -58,8 +70,8 @@ public class LoginTests extends BaseTest {
         WebDriver driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        String url = "https://bbb.testpro.io/";
-        driver.get(url);
+       // String url = "https://bbb.testpro.io/";
+       // driver.get(url);
 
         WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
         emailField.click();
