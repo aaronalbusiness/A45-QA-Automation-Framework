@@ -4,12 +4,12 @@
     <test name="Example Test" preserve-order="true">
         <parameter name="BaseURL" value="https://bbb.testpro.io/"/>
         <classes>
-            <class name="LoginTests">
-                <methods>
-                    <include name="login" />
-                </methods>
+            <class name="DeletePlaylistTest">
             </class>
         </classes>
     </test>
 </suite>
 
+<!--<methods>-->
+<!--<include name="login" />-->
+<!--</methods>-->

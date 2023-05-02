@@ -41,9 +41,6 @@ public class LoginTests extends BaseTest {
         driver.quit();
     }
 
-
-
-
     public void loginSuccessfulTest() {
 
         ChromeOptions options = new ChromeOptions();
