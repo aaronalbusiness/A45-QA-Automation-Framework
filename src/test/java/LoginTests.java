@@ -44,7 +44,7 @@ public class LoginTests extends BaseTest {
     
     @Test
 
-    public void login(String email, String password) {
+    public void login() {
 
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
