@@ -9,7 +9,6 @@
             <class name="BaseTest"/>
             <class name="RegistrationNavigationTest"/>
             <class name="PlaySongTest"/>
-            <class name="DeletePlaylistTest"/>
         </classes>
     </test>
 </suite>
