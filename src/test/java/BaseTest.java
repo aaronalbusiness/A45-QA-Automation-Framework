@@ -16,7 +16,7 @@ public class BaseTest {
     public static WebDriverWait wait;
     public static WebDriver driver= null;
 
-//    public static String url = "";
+   public static String url = "";
 
     @BeforeSuite
     static void setupClass() {
