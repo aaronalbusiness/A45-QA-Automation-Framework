@@ -23,14 +23,14 @@ public class PlaySongTest extends BaseTest{
     }
 
     public void login(String email, String password) {
-//        ChromeOptions options = new ChromeOptions();
-//        options.addArguments("--remote-allow-origins=*");
-//
-//        driver = new ChromeDriver(options);
-//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-//
-//        String url = "https://bbb.testpro.io/";
-//        driver.get(url);
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+
+        driver = new ChromeDriver(options);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+        String url = "https://bbb.testpro.io/";
+        driver.get(url);
 
 
         WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
