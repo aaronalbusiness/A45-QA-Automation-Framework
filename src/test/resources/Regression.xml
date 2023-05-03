@@ -5,11 +5,11 @@
     <test name="Example Test" preserve-order="false">
         <parameter name="BaseURL" value="https://bbb.testpro.io/"/>
         <classes>
-            <class name="LoginTests"/>
+            <class name="AddSongToPlaylistTest"/>
             <class name="BaseTest"/>
-            <class name="RegistrationNavigationTest"/>
+            <class name="LoginTests"/>
             <class name="PlaySongTest"/>
-            <class name="DeletePlaylistTest"/>
+            <class name="RegistrationNavigationTest"/>
         </classes>
     </test>
 </suite>
