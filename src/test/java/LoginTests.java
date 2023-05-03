@@ -38,7 +38,7 @@ public class LoginTests extends BaseTest {
         System.out.println("url: " + whatIsURL);
 
         Assert.assertEquals(driver.getCurrentUrl(), url);
-        driver.quit();
+        //driver.quit();
     }
 
     @Test

@@ -13,7 +13,7 @@ import java.time.Duration;
 
 public class BaseTest {
 
-    static WebDriverWait wait;
+    public static WebDriverWait wait;
     public static WebDriver driver= null;
 
     public static String url = "";
@@ -39,12 +39,12 @@ public class BaseTest {
         navigateToPage();
     }
 
-    @AfterMethod
-    public void tearDownBrowser() {driver.quit();
-    }
+//    @AfterMethod
+//    public void tearDownBrowser() {driver.quit();
+//    }
 
     @Test
-    public void login() {
+    public void login(String email, String password) {
 
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");

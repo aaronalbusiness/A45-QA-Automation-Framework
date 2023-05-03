@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class PlaySongTest {
+public class PlaySongTest extends BaseTest{
 
     private WebDriver driver;
 
@@ -18,7 +18,7 @@ public class PlaySongTest {
         playSong();
         Assert.assertTrue(isSongPlaying());
         Thread.sleep(2000); // Wait for 10 seconds
-        driver.quit();
+        //driver.quit();
 
     }
 
