@@ -23,21 +23,21 @@ public class BaseTest {
         WebDriverManager.chromedriver().setup();
     }
 
-    @BeforeMethod
-    @Parameters({"BaseURL"})
-
-    public void launchBrowser(String BaseURL) {
-        // Added ChromeOptions argument below to fix websocket error
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-        options.addArguments("--disable-notifications");
-
-        driver = new ChromeDriver(options);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        url = BaseURL;
-        navigateToPage();
-    }
+//    @BeforeMethod
+//    @Parameters({"BaseURL"})
+//
+//    public void launchBrowser(String BaseURL) {
+//        // Added ChromeOptions argument below to fix websocket error
+//        ChromeOptions options = new ChromeOptions();
+//        options.addArguments("--remote-allow-origins=*");
+//        options.addArguments("--disable-notifications");
+//
+//        driver = new ChromeDriver(options);
+//        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+//        url = BaseURL;
+//        navigateToPage();
+//    }
 
 //    @AfterMethod
 //    public void tearDownBrowser() {driver.quit();
