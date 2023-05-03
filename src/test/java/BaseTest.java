@@ -14,7 +14,7 @@ import java.time.Duration;
 public class BaseTest {
 
     public static WebDriverWait wait;
-    //public static WebDriver driver= null;
+    public static WebDriver driver= null;
 
    public static String url = "";
 
