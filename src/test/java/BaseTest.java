@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 
 import java.time.Duration;
+import java.util.UUID;
 
 
 public class BaseTest {
@@ -39,55 +40,54 @@ public class BaseTest {
         navigateToPage();
     }
 
-    @AfterMethod
-    public void tearDownBrowser() {driver.quit();
-    }
+//    @AfterMethod
+//    public void tearDownBrowser() {driver.quit();
+//    }
 
-    @Test
-    public void login(String email, String password) {
 
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
 
-        WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-        String url = "https://bbb.testpro.io/";
-        driver.get(url);
-
-        WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
-        emailField.sendKeys("demo@class.com");
-
-        WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
-        passwordField.sendKeys("te$t$tudent");
-
-        WebElement submitButton = driver.findElement(By.cssSelector("button[type='submit']"));
-        submitButton.click();
-    }
-
-    public void navigateToPage() {driver.get(url);
+    // Methods to initioally open page and login
+   public void navigateToPage() {driver.get(url);
 
     }
     public void provideEmail(String email)  {
-        WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[type='email']"))).click();
-        //emailField.click(); //not needed
+        //WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
+        WebElement emailField = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='email']")));
+        emailField.click(); //not needed
         emailField.clear();
         emailField.sendKeys(email);
-
     }
     public static void providePassword(String password) {
-        WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[type='password']"))).click();
+        WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='password']"))).click();
         //passwordField.click(); //not needed
         passwordField.clear();
         passwordField.sendKeys(password);
     }
 
     public void clickSubmit()  {
-        WebElement loginButton = driver.findElement(By.cssSelector("[type='submit']"));
+        WebElement loginButton = driver.findElement(By.cssSelector("button[type='submit']"));
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type='submit']")));
+        //WebElement submitButton = driver.findElement(By.cssSelector("button[type='submit']"));
         loginButton.click();
     }
+
+    public void login(String email, String password) {
+        provideEmail(email);
+        providePassword(password);
+        clickSubmit();
+    }
+
+
+
+
+
+
+
+
+
+    // Methods for adding song to playlist
+
     public void searchSong (String songTitleKeyword) throws InterruptedException {
         WebElement searchField = driver.findElement(By.cssSelector("div#searchForm input[type=search]"));
         searchField.sendKeys(songTitleKeyword);
@@ -123,6 +123,42 @@ public class BaseTest {
         return notificationMessage.getText();
 
     }
+
+
+
+
+
+
+    public static void clickSaveButton() {
+        WebElement saveButton = driver.findElement(By.cssSelector("button[type='submit']"));
+        saveButton.click();
+    }
+
+    public static void provideProfileName(String randomName) {
+        WebElement profileName = driver.findElement(By.cssSelector("[name='name']"));
+        profileName.clear();
+        profileName.sendKeys(randomName);
+    }
+    public static void provideCurrentPassword(String password) {
+        WebElement currentPassword = driver.findElement(By.cssSelector("[name='current_password']"));
+        currentPassword.clear();
+        currentPassword.sendKeys(password);
+    }
+
+    //public static String generateRandomName() {return UUID.randomUUID().toString().replace();
+
+    public static void clickAvatarIcon() {
+        WebElement avatarIcon = driver.findElement(By.cssSelector("img.avatar"));
+    }
+
+
+
+
+
+
+
+
+
 
 
 
