@@ -40,9 +40,9 @@ public class BaseTest {
         navigateToPage();
     }
 
-//    @AfterMethod
-//    public void tearDownBrowser() {driver.quit();
-//    }
+    @AfterMethod
+    public void tearDownBrowser() {driver.quit();
+    }
 
 
 
