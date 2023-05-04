@@ -18,7 +18,6 @@ public class PlaySongTest extends BaseTest{
         playSong();
         Assert.assertTrue(isSongPlaying());
         Thread.sleep(2000); // Wait for 10 seconds
-        //driver.quit();
 
     }
 

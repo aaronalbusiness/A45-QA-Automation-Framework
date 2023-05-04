@@ -23,8 +23,6 @@ public class BaseTest {
    //public static WebDriverWait wait;
 
 
-
-
     @BeforeSuite
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
@@ -44,12 +42,27 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         url = BaseURL;
         navigateToPage();
+
+
+        public static void methodThatUsesTestMethod(Method method) {
+            String methodName = method.getName();
+            System.out.println("Test method name: " + methodName);
+        }
+
+
+        String currentUrl = driver.getCurrentUrl();
+        String whatIsURL = url;
+        System.out.println("Current URL: " + currentUrl);
+        System.out.println("url: " + whatIsURL);
+
+
+
     }
 
-//
-//    @AfterMethod
-//    public void tearDownBrowser() {driver.quit();
-//    }
+
+    @AfterMethod
+    public void tearDownBrowser() {driver.quit();
+    }
 
 
 
@@ -75,7 +88,6 @@ public class BaseTest {
     public void clickSubmit()  {
         //WebElement loginButton = driver.findElement(By.cssSelector("button[type='submit']"));
         WebElement loginButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type='submit']")));
-        WebElement submitButton = driver.findElement(By.cssSelector("button[type='submit']"));
         loginButton.click();
     }
 
@@ -91,37 +103,39 @@ public class BaseTest {
     // Methods for adding song to playlist
 
     public void searchSong (String songTitleKeyword) throws InterruptedException {
-        WebElement searchField = driver.findElement(By.cssSelector("div#searchForm input[type=search]"));
+        //WebElement searchField = driver.findElement(By.cssSelector("div#searchForm input[type=search]"));
+        WebElement searchField = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div#searchForm input[type=search]")));
         searchField.sendKeys(songTitleKeyword);
         Thread.sleep(2000);
     }
     public void clickViewAllBtn () throws InterruptedException {
-        //WebElement viewAllSearchResults = driver.findElement(By.cssSelector("div.results section.songs h1"));
-        WebElement viewAllSearchResults = driver.findElement(By.cssSelector("button[data-test='view-all-songs-btn'][rounded][small][orange]"));
+        WebElement viewAllSearchResults = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[data-test='view-all-songs-btn'][rounded][small][orange]")));
         viewAllSearchResults.click();
         Thread.sleep(2000);
     }
 
     public void selectFirstSongResult () throws InterruptedException {
-        WebElement firstSongResult = driver.findElement(By.cssSelector("section#songResultsWrapper tr.song-item td.title"));
+        WebElement firstSongResult = wait.until(ExpectedConditions.elementToBeClickable((By.cssSelector("section#songResultsWrapper tr.song-item td.title"))));
         firstSongResult.click();
         Thread.sleep(2000);
     }
 
     public void clickAddToBtn () throws InterruptedException {
-        WebElement addToButton = driver.findElement(By.cssSelector("button.btn-add-to"));
+        WebElement addToButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button.btn-add-to")));
         addToButton.click();
         Thread.sleep(2000);
     }
 
     public void choosePlaylist () throws InterruptedException {
-        WebElement choosePlaylist = driver.findElement(By.xpath("//section[@id = 'songResultsWrapper']//li[contains(text(), 'Alan Test Playlist')]"));
+        //WebElement choosePlaylist = driver.findElement(By.xpath("//section[@id = 'songResultsWrapper']//li[contains(text(), 'temp12')]"));
+        WebElement choosePlaylist = wait.until(ExpectedConditions.elementToBeClickable((By.xpath("//section[@id = 'songResultsWrapper']//li[contains(text(), 'temp12')]"))));
         choosePlaylist.click();
         Thread.sleep(2000);
     }
 
     public String getNotificationText () {
-        WebElement notificationMessage = driver.findElement(By.cssSelector("div.success.show"));
+        //WebElement notificationMessage = driver.findElement(By.cssSelector("div.success.show"));
+        WebElement notificationMessage = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div.success.show")));
         return notificationMessage.getText();
 
     }
@@ -131,24 +145,27 @@ public class BaseTest {
 
 
     public static void clickSaveButton() {
-        WebElement saveButton = driver.findElement(By.cssSelector("button[type='submit']"));
+        //WebElement saveButton = driver.findElement(By.cssSelector("button[type='submit']"));
+        WebElement saveButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type='submit']")));
         saveButton.click();
     }
 
     public static void provideProfileName(String randomName) {
-        WebElement profileName = driver.findElement(By.cssSelector("[name='name']"));
+        //WebElement profileName = driver.findElement(By.cssSelector("[name='name']"));
+        WebElement profileName = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[name='name']")));
         profileName.clear();
         profileName.sendKeys(randomName);
     }
     public static void provideCurrentPassword(String password) {
-        WebElement currentPassword = driver.findElement(By.cssSelector("[name='current_password']"));
+        //WebElement currentPassword = driver.findElement(By.cssSelector("[name='current_password']"));
+        WebElement currentPassword = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[name='current_password']")));
         currentPassword.clear();
         currentPassword.sendKeys(password);
     }
 
-    //public static String generateRandomName() {return UUID.randomUUID().toString().replace();
 
     public static void clickAvatarIcon() {
+
         WebElement avatarIcon = driver.findElement(By.cssSelector("img.avatar"));
     }
 
