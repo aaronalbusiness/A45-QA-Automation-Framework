@@ -13,7 +13,7 @@ public class AddSongToPlaylistTest extends BaseTest {
 
        //Methods from Basetest
         navigateToPage();
-        provideEmail("aaronalbusiness@gmail.com");
+        provideEmail("demo@class.com");
         providePassword("te$t$tudent");
         clickSubmit();
 

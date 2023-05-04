@@ -70,7 +70,6 @@ public class LoginTests extends BaseTest {
 
         Assert.assertTrue(avatarImage.isDisplayed());
         driver.quit();
-
     }
 
     @Test
