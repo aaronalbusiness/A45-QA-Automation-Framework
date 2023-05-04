@@ -44,19 +44,6 @@ public class BaseTest {
         navigateToPage();
 
 
-        public static void methodThatUsesTestMethod(Method method) {
-            String methodName = method.getName();
-            System.out.println("Test method name: " + methodName);
-        }
-
-
-        String currentUrl = driver.getCurrentUrl();
-        String whatIsURL = url;
-        System.out.println("Current URL: " + currentUrl);
-        System.out.println("url: " + whatIsURL);
-
-
-
     }
 
 
