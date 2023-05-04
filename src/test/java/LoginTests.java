@@ -44,6 +44,11 @@ public class LoginTests extends BaseTest {
     @Test
     public void loginSuccessfulTest() {
 
+//        navigateToPage();
+//        provideEmail("demo@class.com");
+//        providePassword("te$t$tudent");
+//        clickSubmit();
+
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
 
@@ -69,7 +74,7 @@ public class LoginTests extends BaseTest {
         WebElement avatarImage = driver.findElement(By.cssSelector("img.avatar"));
 
         Assert.assertTrue(avatarImage.isDisplayed());
-        driver.quit();
+        //driver.quit();
     }
 
     @Test
