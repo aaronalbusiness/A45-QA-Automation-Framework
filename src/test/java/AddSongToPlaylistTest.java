@@ -19,7 +19,7 @@ public class AddSongToPlaylistTest extends BaseTest {
 
 
         //Methods from Basetest
-        searchSong("Funeral Music");
+        searchSong("Frantic");
         clickViewAllBtn();
         selectFirstSongResult();
         clickAddToBtn();

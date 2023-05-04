@@ -14,10 +14,16 @@ import java.util.UUID;
 
 public class BaseTest {
 
-    public static WebDriverWait wait;
+    static WebDriverWait wait;
+
     public static WebDriver driver= null;
 
-   public static String url = "";
+    public static String url = "";
+
+   //public static WebDriverWait wait;
+
+
+
 
     @BeforeSuite
     static void setupClass() {
@@ -40,9 +46,10 @@ public class BaseTest {
         navigateToPage();
     }
 
-    @AfterMethod
-    public void tearDownBrowser() {driver.quit();
-    }
+//
+//    @AfterMethod
+//    public void tearDownBrowser() {driver.quit();
+//    }
 
 
 
@@ -58,17 +65,17 @@ public class BaseTest {
         emailField.sendKeys(email);
     }
     public static void providePassword(String password) {
-        WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='password']"))).click();
-        //passwordField.click(); //not needed
+        //WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
+        WebElement passwordField = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='password']")));
+        passwordField.click(); //not needed
         passwordField.clear();
         passwordField.sendKeys(password);
     }
 
     public void clickSubmit()  {
-        WebElement loginButton = driver.findElement(By.cssSelector("button[type='submit']"));
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type='submit']")));
-        //WebElement submitButton = driver.findElement(By.cssSelector("button[type='submit']"));
+        //WebElement loginButton = driver.findElement(By.cssSelector("button[type='submit']"));
+        WebElement loginButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type='submit']")));
+        WebElement submitButton = driver.findElement(By.cssSelector("button[type='submit']"));
         loginButton.click();
     }
 
@@ -77,11 +84,6 @@ public class BaseTest {
         providePassword(password);
         clickSubmit();
     }
-
-
-
-
-
 
 
 
@@ -128,7 +130,6 @@ public class BaseTest {
 
 
 
-
     public static void clickSaveButton() {
         WebElement saveButton = driver.findElement(By.cssSelector("button[type='submit']"));
         saveButton.click();
@@ -150,18 +151,5 @@ public class BaseTest {
     public static void clickAvatarIcon() {
         WebElement avatarIcon = driver.findElement(By.cssSelector("img.avatar"));
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

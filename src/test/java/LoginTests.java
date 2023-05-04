@@ -41,37 +41,37 @@ public class LoginTests extends BaseTest {
         //driver.quit();
     }
 
-//    @Test
-//    public void loginSuccessfulTest() {
-//
-//        ChromeOptions options = new ChromeOptions();
-//        options.addArguments("--remote-allow-origins=*");
-//
-//        WebDriver driver = new ChromeDriver(options);
-//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-//
-//        String url = "https://bbb.testpro.io/";
-//        driver.get(url);
-//
-//        WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
-//        emailField.click();
-//        emailField.clear();
-//        emailField.sendKeys("demo@class.com");
-//
-//        WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
-//        passwordField.click();
-//        passwordField.clear();
-//        passwordField.sendKeys("te$t$tudent");
-//
-//        WebElement submitButton = driver.findElement(By.cssSelector("button[type='submit']"));
-//        submitButton.click();
-//
-//        WebElement avatarImage = driver.findElement(By.cssSelector("img.avatar"));
-//
-//        Assert.assertTrue(avatarImage.isDisplayed());
-//        driver.quit();
-//
-//    }
+    @Test
+    public void loginSuccessfulTest() {
+
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+
+        WebDriver driver = new ChromeDriver(options);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+        String url = "https://bbb.testpro.io/";
+        driver.get(url);
+
+        WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
+        emailField.click();
+        emailField.clear();
+        emailField.sendKeys("demo@class.com");
+
+        WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
+        passwordField.click();
+        passwordField.clear();
+        passwordField.sendKeys("te$t$tudent");
+
+        WebElement submitButton = driver.findElement(By.cssSelector("button[type='submit']"));
+        submitButton.click();
+
+        WebElement avatarImage = driver.findElement(By.cssSelector("img.avatar"));
+
+        Assert.assertTrue(avatarImage.isDisplayed());
+        driver.quit();
+
+    }
 
     @Test
     public void loginInvalidEmailValidPassswordTest() {
