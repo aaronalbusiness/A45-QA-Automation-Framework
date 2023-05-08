@@ -6,12 +6,14 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.*;
 
 import org.openqa.selenium.interactions.Actions;
 
 
 import java.time.Duration;
+import java.util.List;
 //import java.util.UUID;
 
 
@@ -134,6 +136,32 @@ public class BaseTest {
     }
 
 
+
+    //Action Methods
+    public void chooseAllSongList() {
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector("a.songs[href='#!/songs']")));
+        driver.findElement(By.cssSelector("a.songs[href='#!/songs']")).click();
+    }
+
+    public void contextClickFirstSong() {
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector(".all-songs tr.song-item:nth-child(1)")));
+        WebElement firstSong = driver.findElement(By.cssSelector(".all-songs tr.song-item:nth-child(1)"));
+        actions.contextClick(firstSong).perform();
+    }
+
+    public void hoverPlay() {
+        WebElement play = driver.findElement(By.cssSelector("[data-testid='play-btn']"));
+        actions.moveToElement(play).perform();
+        //return driver.findElement("[data-testid='play-btn']"));
+        }
+
+    public void displayAllSongs(){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".playlist:nth-child(3)")));
+        driver.findElement(By.cssSelector(".playlist:nth-child(3)")).click();
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector(".all-songs tr.song-item")));
+        List<WebElement> songsList = driver.findElements(By.cssSelector(".all-songs tr.song-item"));
+        Assert.assertEquals(songsList.size(), 5);
+    }
 
 
 //

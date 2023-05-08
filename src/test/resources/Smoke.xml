@@ -6,7 +6,7 @@
         <classes>
             <class name="LoginTests">
                 <methods>
-                    <include name="actionMethods" />
+                    <include name="listOfSongsWebElements" />
                 </methods>
             </class>
         </classes>
