@@ -1,16 +1,37 @@
 import org.openqa.selenium.By;
-
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.annotations.DataProvider;
-
 
 
 import java.lang.reflect.Method;
 import java.time.Duration;
 
 public class LoginTests extends BaseTest {
+
+    @Test
+    public void actionMethods() {
+        provideEmail("demo@class.com");
+        providePassword("te$t$tudent");
+        clickSubmit();
+        chooseAllSongList();
+        contextClickFirstSong();
+    }
+
+    public void chooseAllSongList() {
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector("a.songs[href='#!/songs']")));
+        driver.findElement(By.cssSelector("a.songs[href='#!/songs']")).click();
+    }
+
+    public void contextClickFirstSong() {
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector(".all-songs tr.song-item:nth-child(1)")));
+        WebElement firstSong = driver.findElement(By.cssSelector(".all-songs tr.song-item:nth-child(1)"));
+        actions.contextClick(firstSong).perform();
+
+    }
+
 
     @DataProvider(name = "IncorrectLoginProviders")
     public static Object[][] getDataFromDataProviders() {
