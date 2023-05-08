@@ -14,10 +14,12 @@ public class LoginTests extends BaseTest {
         provideEmail("demo@class.com");
         providePassword("te$t$tudent");
         clickSubmit();
-        chooseAllSongList();
+        doubleClickChoosePlaylist();
 
-        contextClickFirstSong();
-        hoverPlay();
+        //chooseAllSongList();
+        //contextClickFirstSong();
+
+        //hoverPlay();
     }
 
     @Test

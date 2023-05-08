@@ -156,11 +156,16 @@ public class BaseTest {
         }
 
     public void displayAllSongs(){
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".playlist:nth-child(3)")));
-        driver.findElement(By.cssSelector(".playlist:nth-child(3)")).click();
+        chooseAllSongList();
         wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector(".all-songs tr.song-item")));
         List<WebElement> songsList = driver.findElements(By.cssSelector(".all-songs tr.song-item"));
-        Assert.assertEquals(songsList.size(), 5);
+        Assert.assertEquals(songsList.size(), 63);
+    }
+
+    public void doubleClickChoosePlaylist() {
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector(".playlist:nth-child(3)")));
+        WebElement playlist = driver.findElement(By.cssSelector(".playlist:nth-child(3)"));
+        actions.doubleClick(playlist).perform();
     }
 
 
