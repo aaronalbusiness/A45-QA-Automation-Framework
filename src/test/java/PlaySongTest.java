@@ -17,9 +17,6 @@ public class PlaySongTest extends BaseTest{
         login("demo@class.com", "te$t$tudent");
         playSong();
         Assert.assertTrue(isSongPlaying());
-
-        //driver.quit();
-
     }
 
     public void login(String email, String password) {
