@@ -12,24 +12,12 @@ public class RegistrationNavigationTest extends BaseTest {
     @Test
     public void registrationNavigation() {
 
-//      Added ChromeOptions argument below to fix websocket error
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-
-        WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-        String url = "https://bbb.testpro.io/";
-        driver.get(url);
-
         WebElement registrationLink = driver.findElement(By.cssSelector("[id='hel']"));
         registrationLink.click();
 
         String registrationUrl = "https://bbb.testpro.io/registration.php";
 
         Assert.assertEquals(driver.getCurrentUrl(), registrationUrl);
-        //driver.quit();
-
 
     }
 }
