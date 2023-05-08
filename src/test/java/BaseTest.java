@@ -47,9 +47,10 @@ public class BaseTest {
     }
 
 
-    @AfterMethod
-    public void tearDownBrowser() {driver.quit();
-    }
+//    @AfterMethod
+//    public void tearDownBrowser() {
+//        driver.quit();
+//    }
 
 
 
