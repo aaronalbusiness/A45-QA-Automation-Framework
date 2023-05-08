@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 
 import java.time.Duration;
-import java.util.UUID;
+//import java.util.UUID;
 
 
 public class BaseTest {
@@ -46,10 +46,10 @@ public class BaseTest {
         navigateToPage();
     }
 
-//
-//    @AfterMethod
-//    public void tearDownBrowser() {driver.quit();
-//    }
+
+    @AfterMethod
+    public void tearDownBrowser() {driver.quit();
+    }
 
 
 
@@ -75,7 +75,7 @@ public class BaseTest {
     public void clickSubmit()  {
         //WebElement loginButton = driver.findElement(By.cssSelector("button[type='submit']"));
         WebElement loginButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type='submit']")));
-        WebElement submitButton = driver.findElement(By.cssSelector("button[type='submit']"));
+        //WebElement submitButton = driver.findElement(By.cssSelector("button[type='submit']"));
         loginButton.click();
     }
 
@@ -129,27 +129,27 @@ public class BaseTest {
 
 
 
-
-    public static void clickSaveButton() {
-        WebElement saveButton = driver.findElement(By.cssSelector("button[type='submit']"));
-        saveButton.click();
-    }
-
-    public static void provideProfileName(String randomName) {
-        WebElement profileName = driver.findElement(By.cssSelector("[name='name']"));
-        profileName.clear();
-        profileName.sendKeys(randomName);
-    }
-    public static void provideCurrentPassword(String password) {
-        WebElement currentPassword = driver.findElement(By.cssSelector("[name='current_password']"));
-        currentPassword.clear();
-        currentPassword.sendKeys(password);
-    }
-
-    //public static String generateRandomName() {return UUID.randomUUID().toString().replace();
-
-    public static void clickAvatarIcon() {
-        WebElement avatarIcon = driver.findElement(By.cssSelector("img.avatar"));
-    }
-
+//
+//    public static void clickSaveButton() {
+//        WebElement saveButton = driver.findElement(By.cssSelector("button[type='submit']"));
+//        saveButton.click();
+//    }
+//
+//    public static void provideProfileName(String randomName) {
+//        WebElement profileName = driver.findElement(By.cssSelector("[name='name']"));
+//        profileName.clear();
+//        profileName.sendKeys(randomName);
+//    }
+//    public static void provideCurrentPassword(String password) {
+//        WebElement currentPassword = driver.findElement(By.cssSelector("[name='current_password']"));
+//        currentPassword.clear();
+//        currentPassword.sendKeys(password);
+//    }
+//
+//    //public static String generateRandomName() {return UUID.randomUUID().toString().replace();
+//
+//    public static void clickAvatarIcon() {
+//        WebElement avatarIcon = driver.findElement(By.cssSelector("img.avatar"));
+//    }
+//
 }
