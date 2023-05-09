@@ -53,7 +53,7 @@ public class BaseTest {
         url = BaseURL;
         navigateToPage();
     }
-
+//
 //    @AfterMethod
 //    public void tearDownBrowser() {
 //        driver.quit();
@@ -135,7 +135,7 @@ public class BaseTest {
     }
 
 
-    // Helper Methods for Delete plylist testbbbbbbbb
+    // Helper Methods for Delete plylist
 
     public void openPlaylist() {
         WebElement emptyPlaylist = driver.findElement(By.cssSelector(".playlist:nth-child(3)"));
@@ -147,7 +147,6 @@ public class BaseTest {
     public void clickDeletePlaylistBtn()  {
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".btn-delete-playlist")));
         WebElement deletePlaylist = driver.findElement(By.cssSelector(".btn-delete-playlist"));
-        // WebElement deletePlaylist = driver.findElement(By.cssSelector("button.del.btn-delete-playlist"));
         deletePlaylist.click();
 
     }

@@ -4,28 +4,21 @@ public class ActionMethodsTests extends BaseTest{
 
     @Test
     public void actionMethodContextClick() {
-        provideEmail("demo@class.com");
-        providePassword("te$t$tudent");
-        clickSubmit();
+        login("demo@class.com","te$t$tudent" );
         chooseAllSongList();
         contextClickFirstSong();
     }
 
     @Test
     public void actionMethodHover() {
-        provideEmail("demo@class.com");
-        providePassword("te$t$tudent");
-        clickSubmit();
+        login("demo@class.com","te$t$tudent" );
         chooseAllSongList();
         hoverPlay();
     }
 
     @Test
     public void listOfSongsWebElements () {
-        // Requires playlist 'Playlist Dem,o" with at least 1 song
-        provideEmail("demo@class.com");
-        providePassword("te$t$tudent");
-        clickSubmit();
+        login("demo@class.com","te$t$tudent" );
         displayAllSongs();
     }
 }

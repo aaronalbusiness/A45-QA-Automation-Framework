@@ -14,7 +14,7 @@ public class AddSongToPlaylistTest extends BaseTest {
        //Methods from Basetest
         login("demo@class.com", "te$t$tudent");
         Thread.sleep(2000);
-        searchSong("Stance");
+        searchSong("Dark");
         clickViewAllBtn();
         selectFirstSongResult();
         clickAddToBtn();
