@@ -9,26 +9,6 @@ import java.lang.reflect.Method;
 
 public class LoginTests extends BaseTest {
 
-    @Test
-    public void actionMethods() {
-        provideEmail("demo@class.com");
-        providePassword("te$t$tudent");
-        clickSubmit();
-        doubleClickChoosePlaylist();
-
-        //chooseAllSongList();
-        //contextClickFirstSong();
-
-        //hoverPlay();
-    }
-
-    @Test
-    public void listOfSongsWebElements () {
-        provideEmail("demo@class.com");
-        providePassword("te$t$tudent");
-        clickSubmit();
-        displayAllSongs();
-    }
 
 
     @DataProvider(name = "IncorrectLoginProviders")
@@ -40,7 +20,7 @@ public class LoginTests extends BaseTest {
         };
 }
 
-    @Test (dataProvider = "IncorrectLoginProviders", enabled = true, priority = 0, description = "Different logins from dataprovider")
+    @Test (dataProvider = "IncorrectLoginProviders", description = "Different logins from dataprovider")
     public void incorrectLoginProvidersTest(Method method, String userName, String userPassword) {
 
         System.out.println("Running test method: " + method.getName());
@@ -55,7 +35,6 @@ public class LoginTests extends BaseTest {
         System.out.println("url: " + whatIsURL);
 
         Assert.assertEquals(driver.getCurrentUrl(), url);
-
     }
 
     @Test

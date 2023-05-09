@@ -54,18 +54,21 @@ public class BaseTest {
         navigateToPage();
     }
 
-
 //    @AfterMethod
 //    public void tearDownBrowser() {
 //        driver.quit();
 //    }
 
-
-
-    // Methods to initioally open page and login
-   public void navigateToPage() {driver.get(url);
+    // Helper methods to open page and login
+    public void navigateToPage() {driver.get(url);
 
     }
+    public void login(String email, String password) {
+        provideEmail(email);
+        providePassword(password);
+        clickSubmit();
+    }
+
     public void provideEmail(String email)  {
         //WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
         WebElement emailField = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='email']")));
@@ -88,22 +91,18 @@ public class BaseTest {
         loginButton.click();
     }
 
-    public void login(String email, String password) {
-        provideEmail(email);
-        providePassword(password);
-        clickSubmit();
-    }
 
-
-
-
-    // Methods for adding song to playlist
+    // Helper methods for adding song to playlist
 
     public void searchSong (String songTitleKeyword) throws InterruptedException {
-        WebElement searchField = driver.findElement(By.cssSelector("div#searchForm input[type=search]"));
+        //WebElement searchField = driver.findElement(By.id("searchForm"));
+        WebElement searchField = driver.findElement(By.cssSelector("input[type='search'][name='q']"));
+        System.out.println("sF:"+searchField);
+        searchField.click();
         searchField.sendKeys(songTitleKeyword);
         Thread.sleep(2000);
     }
+
     public void clickViewAllBtn () throws InterruptedException {
         //WebElement viewAllSearchResults = driver.findElement(By.cssSelector("div.results section.songs h1"));
         WebElement viewAllSearchResults = driver.findElement(By.cssSelector("button[data-test='view-all-songs-btn'][rounded][small][orange]"));
@@ -124,7 +123,7 @@ public class BaseTest {
     }
 
     public void choosePlaylist () throws InterruptedException {
-        WebElement choosePlaylist = driver.findElement(By.xpath("//section[@id = 'songResultsWrapper']//li[contains(text(), 'Alan Test Playlist')]"));
+        WebElement choosePlaylist = driver.findElement(By.xpath("//section[@id = 'songResultsWrapper']//li[contains(text(), 'MyPlaylist')]"));
         choosePlaylist.click();
         Thread.sleep(2000);
     }
@@ -136,24 +135,52 @@ public class BaseTest {
     }
 
 
+    // Helper Methods for Delete plylist testbbbbbbbb
 
-    //Action Methods
-    public void chooseAllSongList() {
-        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector("a.songs[href='#!/songs']")));
-        driver.findElement(By.cssSelector("a.songs[href='#!/songs']")).click();
+    public void openPlaylist() {
+        WebElement emptyPlaylist = driver.findElement(By.cssSelector(".playlist:nth-child(3)"));
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector(".playlist:nth-child(3)")));
+
+        emptyPlaylist.click();
     }
 
+    public void clickDeletePlaylistBtn()  {
+        WebElement deletePlaylist = driver.findElement(By.cssSelector(".btn-delete-playlist"));
+        // WebElement deletePlaylist = driver.findElement(By.cssSelector("button.del.btn-delete-playlist"));
+        deletePlaylist.click();
+
+    }
+
+    public String getDeletedPlaylistMsg() {
+        WebElement notificationsMsg = driver.findElement( By.cssSelector("div.success.show"));
+        return notificationsMsg.getText();
+    }
+
+
+
+    //Action Methods
+
+    //Action Methods - Context Click
+    public void chooseAllSongList() {
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector("a.songs[href='#!/songs']"))); //"li a.songs"
+        driver.findElement(By.cssSelector("a.songs[href='#!/songs']")).click();
+    }
     public void contextClickFirstSong() {
         wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector(".all-songs tr.song-item:nth-child(1)")));
         WebElement firstSong = driver.findElement(By.cssSelector(".all-songs tr.song-item:nth-child(1)"));
         actions.contextClick(firstSong).perform();
     }
 
+
+    //Action Methods - Hover
     public void hoverPlay() {
         WebElement play = driver.findElement(By.cssSelector("[data-testid='play-btn']"));
         actions.moveToElement(play).perform();
-        //return driver.findElement("[data-testid='play-btn']"));
-        }
+        //return driver.findElement(By.cssSelector(("[data-testid='play-btn']")));
+    }
+
+
+    //Action Methods - countSongsInPlaylist
 
     public void displayAllSongs(){
         chooseAllSongList();
@@ -162,12 +189,22 @@ public class BaseTest {
         Assert.assertEquals(songsList.size(), 63);
     }
 
-    public void doubleClickChoosePlaylist() {
-        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector(".playlist:nth-child(3)")));
-        WebElement playlist = driver.findElement(By.cssSelector(".playlist:nth-child(3)"));
-        actions.doubleClick(playlist).perform();
-    }
 
+
+
+
+//
+//    public void doubleClickChoosePlaylist() {
+//        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector(".playlist:nth-child(3)")));
+//        WebElement playlist = driver.findElement(By.cssSelector(".playlist:nth-child(3)"));
+//        actions.doubleClick(playlist).perform();
+//    }
+//
+//
+//    public void choosePlayOption() {
+//        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector("li.playback")));
+//    }
+//
 
 //
 //    public static void clickSaveButton() {

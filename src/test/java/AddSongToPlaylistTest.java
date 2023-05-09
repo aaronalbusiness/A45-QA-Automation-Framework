@@ -12,14 +12,9 @@ public class AddSongToPlaylistTest extends BaseTest {
         String newSongAddedNotificationText = "Added 1 song into";
 
        //Methods from Basetest
-        navigateToPage();
-        provideEmail("aaronalbusiness@gmail.com");
-        providePassword("te$t$tudent");
-        clickSubmit();
-
-
-        //Methods from Basetest
-        searchSong("Frantic");
+        login("demo@class.com", "te$t$tudent");
+        Thread.sleep(2000);
+        searchSong("Stance");
         clickViewAllBtn();
         selectFirstSongResult();
         clickAddToBtn();
