@@ -145,6 +145,7 @@ public class BaseTest {
     }
 
     public void clickDeletePlaylistBtn()  {
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".btn-delete-playlist")));
         WebElement deletePlaylist = driver.findElement(By.cssSelector(".btn-delete-playlist"));
         // WebElement deletePlaylist = driver.findElement(By.cssSelector("button.del.btn-delete-playlist"));
         deletePlaylist.click();

@@ -10,6 +10,7 @@ public class DeletePlaylistTest extends BaseTest {
         Thread.sleep(2000);
         openPlaylist();
         clickDeletePlaylistBtn();
+        Thread.sleep(500);
         Assert.assertTrue(getDeletedPlaylistMsg().contains(deletedPlaylistMsg));
     }
 

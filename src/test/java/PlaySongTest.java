@@ -10,35 +10,36 @@ import java.time.Duration;
 
 public class PlaySongTest extends BaseTest{
 
-    private WebDriver driver;
+    //private WebDriver driver;
 
     @Test
-    public void playSongTest() {
+    public void playSongTest() throws InterruptedException {
         login("demo@class.com", "te$t$tudent");
+        Thread.sleep(2000);
         playSong();
         Assert.assertTrue(isSongPlaying());
     }
 
-    public void login(String email, String password) {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-
-        driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-        String url = "https://bbb.testpro.io/";
-        driver.get(url);
-
-
-        WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
-        emailField.sendKeys(email);
-
-        WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
-        passwordField.sendKeys(password);
-
-        WebElement submitButton = driver.findElement(By.cssSelector("button[type='submit']"));
-        submitButton.click();
-    }
+//    public void login(String email, String password) {
+////        ChromeOptions options = new ChromeOptions();
+////        options.addArguments("--remote-allow-origins=*");
+////
+////        driver = new ChromeDriver(options);
+////        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+////
+////        String url = "https://bbb.testpro.io/";
+////        driver.get(url);
+//
+//
+//        WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
+//        emailField.sendKeys(email);
+//
+//        WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
+//        passwordField.sendKeys(password);
+//
+//        WebElement submitButton = driver.findElement(By.cssSelector("button[type='submit']"));
+//        submitButton.click();
+//    }
 
     public void playSong() {
         WebElement playNextButton = driver.findElement(By.xpath("//i[@data-testid='play-next-btn']"));
