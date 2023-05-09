@@ -53,11 +53,11 @@ public class BaseTest {
         url = BaseURL;
         navigateToPage();
     }
-//
-//    @AfterMethod
-//    public void tearDownBrowser() {
-//        driver.quit();
-//    }
+
+    @AfterMethod
+    public void tearDownBrowser() {
+        driver.quit();
+    }
 
     // Helper methods to open page and login
     public void navigateToPage() {driver.get(url);
@@ -147,6 +147,8 @@ public class BaseTest {
     public void clickDeletePlaylistBtn()  {
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".btn-delete-playlist")));
         WebElement deletePlaylist = driver.findElement(By.cssSelector(".btn-delete-playlist"));
+
+
         deletePlaylist.click();
 
     }

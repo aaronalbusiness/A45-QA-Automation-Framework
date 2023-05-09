@@ -1,3 +1,5 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -8,10 +10,11 @@ public class DeletePlaylistTest extends BaseTest {
         String deletedPlaylistMsg = "Deleted playlist";
 
         login("demo@class.com", "te$t$tudent");
-        Thread.sleep(2000);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img.avatar")));
         openPlaylist();
         clickDeletePlaylistBtn();
-        Thread.sleep(500);
+        //getDeletedPlaylistMsg();
+        Thread.sleep(2000);
         Assert.assertTrue(getDeletedPlaylistMsg().contains(deletedPlaylistMsg));
     }
 

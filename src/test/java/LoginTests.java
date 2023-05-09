@@ -3,6 +3,9 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.annotations.DataProvider;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
 
 
 import java.lang.reflect.Method;
@@ -41,33 +44,29 @@ public class LoginTests extends BaseTest {
     public void loginSuccessfulTest(Method method) {
         System.out.println("Running test method: " + method.getName());
 
-        provideEmail("demo@class.com");
-        providePassword("te$t$tudent");
-        clickSubmit();
+        login("demo@class.com", "te$t$tudent");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img.avatar")));
 
         WebElement avatarImage = driver.findElement(By.cssSelector("img.avatar"));
         Assert.assertTrue(avatarImage.isDisplayed());
     }
 
+
+
     @Test
     public void loginInvalidEmailValidPassswordTest(Method method) {
         System.out.println("Running test method: " + method.getName());
 
-        provideEmail("Invalid@class.com");
-        providePassword("te$t$tudent");
-        clickSubmit();
-
+        login("Invalid", "te$t$tudent");
         Assert.assertEquals(driver.getCurrentUrl(), url);
     }
+
 
     @Test
     public void loginValidEmailInvalidPassswordTest(Method method) {
         System.out.println("Running test method: " + method.getName());
 
-        provideEmail("demo@class.com");
-        providePassword("Invalid");
-        clickSubmit();
-
+        login("demo@class.com", "Invalid");
         Assert.assertEquals(driver.getCurrentUrl(), url);
     }
 
