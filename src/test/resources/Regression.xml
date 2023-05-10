@@ -12,6 +12,7 @@
             <class name="LoginTests"/>
             <class name="PlaySongTest"/>
             <class name="RegistrationNavigationTest"/>
+            <class name="RenamePlaylistTest"/>
         </classes>
     </test>
 </suite>
