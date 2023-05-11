@@ -10,11 +10,8 @@ public class DeletePlaylistTest extends BaseTest {
         String deletedPlaylistMsg = "Deleted playlist";
 
         login("demo@class.com", "te$t$tudent");
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img.avatar")));
         openPlaylist();
         clickDeletePlaylistBtn();
-        //getDeletedPlaylistMsg();
-        Thread.sleep(2000);
         Assert.assertTrue(getDeletedPlaylistMsg().contains(deletedPlaylistMsg));
     }
 

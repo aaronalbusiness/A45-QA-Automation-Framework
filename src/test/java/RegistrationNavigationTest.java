@@ -11,12 +11,10 @@ import java.time.Duration;
 public class RegistrationNavigationTest extends BaseTest {
     @Test
     public void registrationNavigation() {
-
         WebElement registrationLink = driver.findElement(By.cssSelector("[id='hel']"));
         registrationLink.click();
 
         String registrationUrl = "https://bbb.testpro.io/registration.php";
-
         Assert.assertEquals(driver.getCurrentUrl(), registrationUrl);
 
     }

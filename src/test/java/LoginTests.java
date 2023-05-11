@@ -32,11 +32,6 @@ public class LoginTests extends BaseTest {
         providePassword(userPassword);
         clickSubmit();
 
-        String currentUrl = driver.getCurrentUrl();
-        String whatIsURL = url;
-        System.out.println("Current URL: " + currentUrl);
-        System.out.println("url: " + whatIsURL);
-
         Assert.assertEquals(driver.getCurrentUrl(), url);
     }
 
@@ -50,8 +45,6 @@ public class LoginTests extends BaseTest {
         WebElement avatarImage = driver.findElement(By.cssSelector("img.avatar"));
         Assert.assertTrue(avatarImage.isDisplayed());
     }
-
-
 
     @Test
     public void loginInvalidEmailValidPassswordTest(Method method) {
@@ -75,9 +68,7 @@ public class LoginTests extends BaseTest {
     public static void loginEmptyEmailEmptyPasswordTest(Method method) {
         System.out.println("Running test method: " + method.getName());
 
-        WebElement submitButton = driver.findElement(By.cssSelector("button[type='submit']"));
-        submitButton.click();
-
+        clickSubmit();
         Assert.assertEquals(driver.getCurrentUrl(), url);
 
     }

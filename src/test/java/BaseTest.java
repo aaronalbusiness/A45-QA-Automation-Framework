@@ -60,9 +60,10 @@ public class BaseTest {
     }
 
 
-    // Helper methods to open page and login
-    public void navigateToPage() {driver.get(url);
 
+    // Helper methods to open page and login
+    public void navigateToPage() {
+        driver.get(url);
     }
     public void login(String email, String password) {
         provideEmail(email);
@@ -71,32 +72,30 @@ public class BaseTest {
     }
 
     public void provideEmail(String email)  {
-        //WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
         WebElement emailField = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='email']")));
         emailField.click(); //not needed
         emailField.clear();
         emailField.sendKeys(email);
     }
     public static void providePassword(String password) {
-        //WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
         WebElement passwordField = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='password']")));
         passwordField.click(); //not needed
         passwordField.clear();
         passwordField.sendKeys(password);
     }
 
-    public void clickSubmit()  {
-        //WebElement loginButton = driver.findElement(By.cssSelector("button[type='submit']"));
+    public static void clickSubmit()  {
         WebElement loginButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type='submit']")));
-        //WebElement submitButton = driver.findElement(By.cssSelector("button[type='submit']"));
         loginButton.click();
     }
 
 
+
+
+
     // Helper methods for adding song to playlist
     public void searchSong (String songTitleKeyword) throws InterruptedException {
-        //WebElement searchField = driver.findElement(By.id("searchForm"));
-        WebElement searchField = driver.findElement(By.cssSelector("input[type='search'][name='q']"));
+        WebElement searchField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='search'][name='q']")));
         System.out.println("sF:"+searchField);
         searchField.click();
         searchField.sendKeys(songTitleKeyword);
@@ -104,7 +103,6 @@ public class BaseTest {
     }
 
     public void clickViewAllBtn () throws InterruptedException {
-        //WebElement viewAllSearchResults = driver.findElement(By.cssSelector("div.results section.songs h1"));
         WebElement viewAllSearchResults = driver.findElement(By.cssSelector("button[data-test='view-all-songs-btn'][rounded][small][orange]"));
         viewAllSearchResults.click();
         Thread.sleep(2000);
@@ -117,39 +115,31 @@ public class BaseTest {
     }
 
     public void clickAddToBtn () throws InterruptedException {
-        WebElement addToButton = driver.findElement(By.cssSelector("button.btn-add-to"));
+        WebElement addToButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button.btn-add-to")));
         addToButton.click();
-        Thread.sleep(2000);
     }
 
     public void choosePlaylist () throws InterruptedException {
-        WebElement choosePlaylist = driver.findElement(By.xpath("//section[@id = 'songResultsWrapper']//li[contains(text(), 'MyPlaylist')]"));
+ By choosePlaylistLocator = By.xpath("//section[@id = 'songResultsWrapper']//li[contains(text(), 'MyPlaylist')]");
+        WebElement choosePlaylist = wait.until(ExpectedConditions.visibilityOfElementLocated(choosePlaylistLocator));
         choosePlaylist.click();
-        Thread.sleep(2000);
-    }
-
-    public String getNotificationText () {
-        WebElement notificationMessage = driver.findElement(By.cssSelector("div.success.show"));
-        return notificationMessage.getText();
     }
 
 
     // Helper Methods for Delete playlist
 
     public void openPlaylist() {
-        WebElement emptyPlaylist = driver.findElement(By.cssSelector(".playlist:nth-child(3)"));
-        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector(".playlist:nth-child(3)")));
+        WebElement emptyPlaylist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".playlist:nth-child(3)")));
         emptyPlaylist.click();
     }
 
     public void clickDeletePlaylistBtn()  {
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".btn-delete-playlist")));
-        WebElement deletePlaylist = driver.findElement(By.cssSelector(".btn-delete-playlist"));
+        WebElement deletePlaylist = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".btn-delete-playlist")));
         deletePlaylist.click();
     }
 
     public String getDeletedPlaylistMsg() {
-        WebElement notificationsMsg = driver.findElement( By.cssSelector("div.success.show"));
+        WebElement notificationsMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
         return notificationsMsg.getText();
     }
 
@@ -176,7 +166,6 @@ public class BaseTest {
         //return driver.findElement(By.cssSelector(("[data-testid='play-btn']")));
     }
 
-
     //Action Methods - countSongsInPlaylist
 
     public void displayAllSongs(){
@@ -199,14 +188,27 @@ public class BaseTest {
         playlistInputField.sendKeys(Keys.ENTER);
     }
 
-    public boolean doesPlaylistExist(){
-        String newPlaylistName = "Test Pro edited Playlist";
-        WebElement playlistElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()='"+newPlaylistName+"']")));
-        return playlistElement.isDisplayed();
+    public void playSong() {
+        WebElement playNextButton = driver.findElement(By.xpath("//i[@data-testid='play-next-btn']"));
+        WebElement playButton = driver.findElement(By.xpath("//span[@data-testid='play-btn']"));
 
+        playNextButton.click();
+        playButton.click();
+    }
+
+    public boolean isSongPlaying() {
+        WebElement soundBar = driver.findElement(By.xpath("//div[@data-testid='sound-bar-play']"));
+        return soundBar.isDisplayed();
     }
 
 
+//
+//    public boolean doesPlaylistExist(){
+//        String newPlaylistName = "Test Pro edited Playlist";
+//        WebElement playlistElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()='"+newPlaylistName+"']")));
+//        return playlistElement.isDisplayed();
+//    }
+//
 //
 //
 //    public void choosePlayOption() {
