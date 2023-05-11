@@ -8,7 +8,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.UUID;
 
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
