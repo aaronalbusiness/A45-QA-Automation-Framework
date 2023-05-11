@@ -200,6 +200,13 @@ public class BaseTest {
         return soundBar.isDisplayed();
     }
 
+    public String getNotificationText () {
+        WebElement notificationMessage = driver.findElement(By.cssSelector("div.success.show"));
+        return notificationMessage.getText();
+
+    }
+
+
 
 //
 //    public boolean doesPlaylistExist(){
