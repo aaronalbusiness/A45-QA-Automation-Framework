@@ -93,19 +93,19 @@ public class BaseTest {
 
 
     // Helper methods for adding song to playlist
-    public void searchSong (String songTitleKeyword) throws InterruptedException {
+    public void searchSong (String songTitleKeyword) {
         WebElement searchField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='search'][name='q']")));
         System.out.println("sF:"+searchField);
         searchField.click();
         searchField.sendKeys(songTitleKeyword);
     }
 
-    public void clickViewAllBtn () throws InterruptedException {
+    public void clickViewAllBtn () {
         WebElement viewAllSearchResults = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[data-test='view-all-songs-btn'][rounded][small][orange]")));
         viewAllSearchResults.click();
     }
 
-    public void selectFirstSongResult () throws InterruptedException {
+    public void selectFirstSongResult ()  {
         WebElement firstSongResult = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("section#songResultsWrapper tr.song-item td.title")));
         firstSongResult.click();
     }
