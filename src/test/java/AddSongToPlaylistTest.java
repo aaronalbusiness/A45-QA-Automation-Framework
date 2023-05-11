@@ -16,7 +16,7 @@ public class AddSongToPlaylistTest extends BaseTest {
         clickAddToBtn();
         choosePlaylist();
 
-        //Assert.assertTrue(getNotificationText().contains(newSongAddedNotificationText));
+        Assert.assertTrue(getNotificationText().contains(newSongAddedNotificationText));
     }
 
 }
