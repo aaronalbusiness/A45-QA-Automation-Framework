@@ -98,19 +98,16 @@ public class BaseTest {
         System.out.println("sF:"+searchField);
         searchField.click();
         searchField.sendKeys(songTitleKeyword);
-        Thread.sleep(2000);
     }
 
     public void clickViewAllBtn () throws InterruptedException {
-        WebElement viewAllSearchResults = driver.findElement(By.cssSelector("button[data-test='view-all-songs-btn'][rounded][small][orange]"));
+        WebElement viewAllSearchResults = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[data-test='view-all-songs-btn'][rounded][small][orange]")));
         viewAllSearchResults.click();
-        Thread.sleep(2000);
     }
 
     public void selectFirstSongResult () throws InterruptedException {
-        WebElement firstSongResult = driver.findElement(By.cssSelector("section#songResultsWrapper tr.song-item td.title"));
+        WebElement firstSongResult = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("section#songResultsWrapper tr.song-item td.title")));
         firstSongResult.click();
-        Thread.sleep(2000);
     }
 
     public void clickAddToBtn () {
@@ -196,12 +193,23 @@ public class BaseTest {
     }
 
     public boolean isSongPlaying() {
-        WebElement soundBar = driver.findElement(By.xpath("//div[@data-testid='sound-bar-play']"));
+        //WebElement soundBar = driver.findElement(By.xpath("//div[@data-testid='sound-bar-play']"));
+
+
+        WebElement soundBar = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@data-testid='sound-bar-play']")));
+
+
+
+
         return soundBar.isDisplayed();
     }
 
     public String getNotificationText () {
-        WebElement notificationMessage = driver.findElement(By.cssSelector("div.success.show"));
+        //WebElement notificationMessage = driver.findElement(By.cssSelector("div.success.show"));
+
+        WebElement notificationMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
+
+
         return notificationMessage.getText();
 
     }
