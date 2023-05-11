@@ -1,3 +1,4 @@
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class ActionMethodsTests extends BaseTest{
@@ -10,10 +11,13 @@ public class ActionMethodsTests extends BaseTest{
     }
 
     @Test
-    public void actionMethodHover() {
+    public void hoverOverPlayButton() {
         login("demo@class.com","te$t$tudent" );
         chooseAllSongList();
         hoverPlay();
+//        Assert.assertTrue(hoverPlay().isDisplayed());
+//        hoverPlay().click;
+//        Assert.assertTrue(isSongPlaying());
     }
 
     @Test
