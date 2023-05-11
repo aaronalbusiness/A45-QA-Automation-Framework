@@ -8,7 +8,7 @@ public class PlaySongTest extends BaseTest{
     //private WebDriver driver;
 
     @Test
-    public void playSongTest() throws InterruptedException {
+    public void playSongTest()  {
         login("demo@class.com", "te$t$tudent");
         chooseAllSongList();
         contextClickFirstSong();

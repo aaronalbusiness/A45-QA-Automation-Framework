@@ -113,12 +113,12 @@ public class BaseTest {
         Thread.sleep(2000);
     }
 
-    public void clickAddToBtn () throws InterruptedException {
+    public void clickAddToBtn () {
         WebElement addToButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button.btn-add-to")));
         addToButton.click();
     }
 
-    public void choosePlaylist () throws InterruptedException {
+    public void choosePlaylist () {
  By choosePlaylistLocator = By.xpath("//section[@id = 'songResultsWrapper']//li[contains(text(), 'MyPlaylist')]");
         WebElement choosePlaylist = wait.until(ExpectedConditions.visibilityOfElementLocated(choosePlaylistLocator));
         choosePlaylist.click();
