@@ -91,7 +91,6 @@ public class BaseTest {
 
 
 
-
     // Helper methods for adding song to playlist
     public void searchSong (String songTitleKeyword) {
         WebElement searchField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='search'][name='q']")));

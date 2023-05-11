@@ -6,13 +6,11 @@
         <parameter name="BaseURL" value="https://bbb.testpro.io/"/>
         <classes>
             <class name="ActionMethodsTests"/>
-            <class name="AddSongToPlaylistTest"/>
+            <class name="PlaylistTests"/>
             <class name="BaseTest"/>
-            <class name="DeletePlaylistTest"/>
             <class name="LoginTests"/>
             <class name="PlaySongTest"/>
             <class name="RegistrationNavigationTest"/>
-            <class name="RenamePlaylistTest"/>
         </classes>
     </test>
 </suite>
