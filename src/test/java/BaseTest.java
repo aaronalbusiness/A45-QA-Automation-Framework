@@ -8,12 +8,17 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
+
+import org.openqa.selenium.Keys;
+
 
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
-import org.testng.annotations.*;
-import java.util.List;
-import org.openqa.selenium.Keys;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Parameters;
 
 
 public class BaseTest {
@@ -27,6 +32,8 @@ public class BaseTest {
     public static String url = "";
 
    //public static WebDriverWait wait;
+
+    String newPlaylistName = "Test Pro edited Playlist";
 
 
 
@@ -53,7 +60,7 @@ public class BaseTest {
         navigateToPage();
     }
 
-    @AfterMethod (enabled = false)
+    @AfterMethod// (enabled = false)
     public void tearDownBrowser() {
         driver.quit();
     }
@@ -89,8 +96,6 @@ public class BaseTest {
     }
 
 
-
-
     // Helper methods for adding song to playlist
     public void searchSong (String songTitleKeyword) {
         WebElement searchField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='search'][name='q']")));
@@ -113,11 +118,17 @@ public class BaseTest {
         WebElement addToButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button.btn-add-to")));
         addToButton.click();
     }
+    public boolean doesPlaylistExist( ) {
+       // By newPlaylist = By.xpath("//a[text()='"+playlistName+"']");
+       WebElement playlistElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()='"+newPlaylistName+"']")));
+        return playlistElement.isDisplayed();
+    }
 
-    public void choosePlaylist () {
- By choosePlaylistLocator = By.xpath("//section[@id = 'songResultsWrapper']//li[contains(text(), 'MyPlaylist')]");
-        WebElement choosePlaylist = wait.until(ExpectedConditions.visibilityOfElementLocated(choosePlaylistLocator));
-        choosePlaylist.click();
+    public void choosePlaylist () throws InterruptedException {
+        //By choosePlaylistLocator = By.xpath("//section[@id = 'songResultsWrapper']//li[contains(text(), 'MyPlaylist')]");
+        WebElement playlistElement = driver.findElement(By.xpath("//section[@id = 'songResultsWrapper']//li[contains(text(), '"+newPlaylistName+"')]"));
+        playlistElement.click();
+        Thread.sleep(2000);
     }
 
 
@@ -176,9 +187,9 @@ public class BaseTest {
     }
 
     public void enterNewPlayListName() {
-        String newPlaylistName = "Test Pro edited Playlist";
+
         WebElement playlistInputField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
-        playlistInputField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.BACK_SPACE));
+        playlistInputField.sendKeys(Keys.chord(Keys.COMMAND, "a", Keys.BACK_SPACE));//we use Keys.COMMAND for mac to select all then backspace to delete the current playlist name and replace with new name
         playlistInputField.sendKeys(newPlaylistName);
         playlistInputField.sendKeys(Keys.ENTER);
     }
@@ -192,23 +203,12 @@ public class BaseTest {
     }
 
     public boolean isSongPlaying() {
-        //WebElement soundBar = driver.findElement(By.xpath("//div[@data-testid='sound-bar-play']"));
-
-
         WebElement soundBar = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@data-testid='sound-bar-play']")));
-
-
-
-
         return soundBar.isDisplayed();
     }
 
     public String getNotificationText () {
-        //WebElement notificationMessage = driver.findElement(By.cssSelector("div.success.show"));
-
         WebElement notificationMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
-
-
         return notificationMessage.getText();
 
     }
