@@ -3,7 +3,7 @@ import org.testng.annotations.Test;
 import pom.HomePage;
 import pom.LoginPage;
 
-public class PlaylistTests extends BaseTest {
+public class PlaylistPOMTest extends BaseTest {
 
     @Test
     public void renamePlaylist() {

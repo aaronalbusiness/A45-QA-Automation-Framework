@@ -1,7 +1,6 @@
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class ActionMethodsTests extends BaseTest{
+public class ActionMethodsTest extends BaseTest{
 
     @Test
     public void actionMethodContextClick() {

@@ -18,10 +18,12 @@ public class LoginPage extends BasePage {
     }
 
     public void providePassword(String password) {
+
         findElement(passwordField).sendKeys(password);
     }
 
     public void clickSubmit() {
+
         findElement(submitBtn).click();
     }
 

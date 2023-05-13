@@ -2,7 +2,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 
-public class PlaylistPreHmk22Test extends BaseTest {
+public class PlaylistTest extends BaseTest {
 
         @Test(priority=1)
         public void deletePlaylist() {

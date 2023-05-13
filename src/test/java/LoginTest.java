@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.lang.reflect.Method;
 
-public class LoginTests extends BaseTest {
+public class LoginTest extends BaseTest {
 
 
 
