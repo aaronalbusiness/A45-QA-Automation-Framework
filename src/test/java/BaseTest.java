@@ -67,7 +67,7 @@ public class BaseTest {
         navigateToPage();
     }
 
-    @AfterMethod// (enabled = false)
+    @AfterMethod (enabled = false)
     public void tearDownBrowser() {
         driver.quit();
     }
