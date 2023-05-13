@@ -1,6 +1,7 @@
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
+import pom.HomePage;
+import pom.LoginPage;
 
 
 public class PlaySongTest extends BaseTest{
@@ -9,11 +10,16 @@ public class PlaySongTest extends BaseTest{
 
     @Test
     public void playSongTest()  {
-        login("demo@class.com", "te$t$tudent");
-        chooseAllSongList();
-        contextClickFirstSong();
-        playSong();
-        Assert.assertTrue(isSongPlaying());
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+        AllSongsPage = new AllSongsPage(driver);
+
+        loginPage.login();
+        homepage.chooseAllSongList;
+        allsongs.contextClickFirstSong();
+        allsongs.choosePlaySong();
+        Assert.assertTrue(allSongs.isSongPlaying());
+
     }
 
 }
