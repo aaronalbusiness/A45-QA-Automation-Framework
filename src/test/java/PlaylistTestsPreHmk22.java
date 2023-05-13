@@ -17,10 +17,11 @@ public class PlaylistTestsPreHmk22 extends BaseTest {
 
         @Test(priority=3)
         public void addSongToPlaylist() throws InterruptedException {
+            // Must be a playlist namedTest Pro edited Playlist and song being added can not be in playlist
             String newSongAddedNotificationText = "Added 1 song into";
 
             login("demo@class.com", "te$t$tudent");
-            searchSong("Ketsa");
+            searchSong("Pluto");
             clickViewAllBtn();
             selectFirstSongResult();
             clickAddToBtn();
