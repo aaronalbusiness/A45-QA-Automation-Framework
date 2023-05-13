@@ -2,6 +2,7 @@ package pom;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class HomePage extends BasePage {
 
@@ -23,5 +24,10 @@ public class HomePage extends BasePage {
     public boolean doesPlaylistExist(String playlistName) {
         By newPlaylist = By.xpath("//a[text()='"+playlistName+"']");
         return findElement(newPlaylist).isDisplayed();
+    }
+
+    public void chooseAllSongList() {
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector("a.songs[href='#!/songs']"))); //"li a.songs"
+        driver.findElement(By.cssSelector("a.songs[href='#!/songs']")).click();
     }
 }
