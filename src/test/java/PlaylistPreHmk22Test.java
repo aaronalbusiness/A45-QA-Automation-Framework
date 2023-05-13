@@ -2,7 +2,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 
-public class PlaylistTestsPreHmk22 extends BaseTest {
+public class PlaylistPreHmk22Test extends BaseTest {
 
         @Test(priority=1)
         public void deletePlaylist() {
@@ -17,11 +17,11 @@ public class PlaylistTestsPreHmk22 extends BaseTest {
 
         @Test(priority=3)
         public void addSongToPlaylist() throws InterruptedException {
-            // Must be a playlist namedTest Pro edited Playlist and song being added can not be in playlist
+            // Must be a playlist named Test Pro edited Playlist and song being added can not be in playlist
             String newSongAddedNotificationText = "Added 1 song into";
 
             login("demo@class.com", "te$t$tudent");
-            searchSong("Pluto");
+            searchSong("Reactor");
             clickViewAllBtn();
             selectFirstSongResult();
             clickAddToBtn();

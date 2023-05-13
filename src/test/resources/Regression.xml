@@ -10,7 +10,7 @@
             <class name="LoginTests"/>
             <class name="PlaylistTests"/>
             <class name="PlaySongTest"/>
-            <class name="PlaylistTestsPreHmk22"/>
+            <class name="PlaylistPreHmk22Test"/>
            <class name="RegistrationNavigationTest"/>
         </classes>
     </test>
