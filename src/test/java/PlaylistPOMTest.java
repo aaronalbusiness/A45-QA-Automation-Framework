@@ -14,7 +14,7 @@ public class PlaylistPOMTest extends BaseTest {
         HomePage homePage = new HomePage(driver);
 
         loginPage.login();
-        homePage.doubleClickPlay1ist();
+        homePage.doubleClickPlaylist();
         homePage.enterNewPlaylistName(playlistName);
 
         Assert.assertTrue(homePage.doesPlaylistExist(playlistName));

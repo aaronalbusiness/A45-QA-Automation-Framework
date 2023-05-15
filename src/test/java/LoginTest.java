@@ -4,7 +4,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.annotations.DataProvider;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-
+import pagefactory.HomePage;
+import pagefactory.LoginPage;
 
 
 import java.lang.reflect.Method;
@@ -44,6 +45,16 @@ public class LoginTest extends BaseTest {
         WebElement avatarImage = driver.findElement(By.cssSelector("img.avatar"));
         Assert.assertTrue(avatarImage.isDisplayed());
     }
+    // the methjod below introduces POM to replace the above method which doesnt implement POM
+    @Test
+    public void loginSuccessfulTestTPOM() {
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+
+        loginPage.login("demo@class.com","te$t$tudent");  //Isnt this better practice then the line below which uses 3 methods?
+//        loginPage.provideEmail("demo@class.com").providePassword("te$t$tudent").clickSubmit();
+       Assert.assertTrue(homePage.IsAvatarDisplayed());
+    }
 
     @Test
     public void loginInvalidEmailValidPassswordTest(Method method) {
@@ -69,6 +80,10 @@ public class LoginTest extends BaseTest {
 
         clickSubmit();
         Assert.assertEquals(driver.getCurrentUrl(), url);
+//
+//        LoginPage loginPage = new LoginPage(driver);
+//        loginPage.provideEmail("").providePassword("").clickSubmit();
+//        Assert.assertEquals(driver.getCurrentUrl(), url);
 
     }
 }

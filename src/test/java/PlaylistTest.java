@@ -30,7 +30,6 @@ public class PlaylistTest extends BaseTest {
         Assert.assertTrue(getNotificationText().contains(newSongAddedNotificationText));
     }
 
-
     @Test(priority=2)
     public void renamePlaylist() {
         // Prerequisite - at least one user-created playlist
