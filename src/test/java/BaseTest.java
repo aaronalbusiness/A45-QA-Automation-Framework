@@ -3,6 +3,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -73,14 +74,15 @@ public class BaseTest {
         navigateToPage();
     }
 
-    @AfterMethod //(enabled = false)
+    @AfterMethod (enabled = false)
     public void tearDownBrowser() {
         driver.quit();
     }
 
     private static WebDriver pickBrowser(String browser) throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
-        String gridURL = "http://192.168.1.160.4444";
+        String gridURL = "http://10.0.0.153:4444/";//replaced with your grid url
+        //java -jar selenium-server-4.9.0.jar standalone
 
         switch (browser) {
             case "firefox":
@@ -88,19 +90,25 @@ public class BaseTest {
                 return new FirefoxDriver();
             case "MicrosoftEdge":
                 WebDriverManager.edgedriver().setup();
-                return new EdgeDriver();
-            case "Safari":
-                WebDriverManager.edgedriver().setup();
+                EdgeOptions edgeOptions = new EdgeOptions();
+                edgeOptions.addArguments("--remote-allow-origins=*");
+                edgeOptions.addArguments("--disable-notifications");
+                return new EdgeDriver(edgeOptions);
+            case "safari":
+                WebDriverManager.safaridriver().setup();//replaced with safari.setup
                 return new SafariDriver();
 
             case "grid-firefox":
                 caps.setCapability("browserName", "firefox");
-                return new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
+                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
             case "grid-chrome":
                 caps.setCapability("browserName", "chrome");
-                return new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
+                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
             case "grid-edge":
                 caps.setCapability("browserName", "MicrosoftEdge");
+                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
+            case "grid-safari":
+                caps.setCapability("browserName", "safari");
                 return new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
 
             default:
@@ -108,7 +116,7 @@ public class BaseTest {
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--remote-allow-origins=*");
                 options.addArguments("--disable-notifications");
-                return new ChromeDriver(options);
+                return driver = new ChromeDriver(options);
         }
     }
 
