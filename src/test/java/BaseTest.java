@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -12,8 +14,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 
 
+import java.net.MalformedURLException;
+import java.net.URI;
 import java.time.Duration;
 import java.util.List;
 
@@ -35,16 +40,14 @@ public class BaseTest {
 
     public static String url = "";
 
-   //public static WebDriverWait wait;
+    //public static WebDriverWait wait;
 
     String newPlaylistName = "Test Pro edited Playlist";
 
 
-
-
     @BeforeSuite
     static void setupClass() {
-        WebDriverManager.chromedriver().setup();
+        // WebDriverManager.chromedriver().setup();
         //WebDriverManager.safaridriver();
         //WebDriverManager.firefoxdriver().setup();
     }
@@ -52,19 +55,20 @@ public class BaseTest {
     @BeforeMethod
     @Parameters({"BaseURL"})
 
-    public void launchBrowser(String BaseURL) {
+    public void launchBrowser(String BaseURL) throws MalformedURLException {
         // Added ChromeOptions argument below to fix websocket error
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-        options.addArguments("--disable-notifications");
+//        ChromeOptions options = new ChromeOptions();
+//        options.addArguments("--remote-allow-origins=*");
+//        options.addArguments("--disable-notifications");
 
-        driver = new ChromeDriver(options);
+        //driver = new ChromeDriver(options);
         //driver = new SafariDriver();
         //driver = new FirefoxDriver();
 
+        driver = pickBrowser(System.getProperty("browser"));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         actions = new Actions(driver);
-        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         url = BaseURL;
         navigateToPage();
     }
@@ -72,6 +76,40 @@ public class BaseTest {
     @AfterMethod //(enabled = false)
     public void tearDownBrowser() {
         driver.quit();
+    }
+
+    private static WebDriver pickBrowser(String browser) throws MalformedURLException {
+        DesiredCapabilities caps = new DesiredCapabilities();
+        String gridURL = "http://192.168.1.160.4444";
+
+        switch (browser) {
+            case "firefox":
+                WebDriverManager.firefoxdriver().setup();
+                return new FirefoxDriver();
+            case "MicrosoftEdge":
+                WebDriverManager.edgedriver().setup();
+                return new EdgeDriver();
+            case "Safari":
+                WebDriverManager.edgedriver().setup();
+                return new SafariDriver();
+
+            case "grid-firefox":
+                caps.setCapability("browserName", "firefox");
+                return new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
+            case "grid-chrome":
+                caps.setCapability("browserName", "chrome");
+                return new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
+            case "grid-edge":
+                caps.setCapability("browserName", "MicrosoftEdge");
+                return new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
+
+            default:
+                WebDriverManager.chromedriver().setup();
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("--remote-allow-origins=*");
+                options.addArguments("--disable-notifications");
+                return new ChromeDriver(options);
+        }
     }
 
 
@@ -128,8 +166,8 @@ public class BaseTest {
         addToButton.click();
     }
     public boolean doesPlaylistExist( ) {
-       // By newPlaylist = By.xpath("//a[text()='"+playlistName+"']");
-       WebElement playlistElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()='"+newPlaylistName+"']")));
+        // By newPlaylist = By.xpath("//a[text()='"+playlistName+"']");
+        WebElement playlistElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()='"+newPlaylistName+"']")));
         return playlistElement.isDisplayed();
     }
 
@@ -262,3 +300,5 @@ public class BaseTest {
 //    }
 //
 }
+
+

@@ -6,9 +6,10 @@
         <classes>
             <class name="LoginTest">
                 <methods>
-                    <include name="actionMethods" />
+                    <include name="loginSuccessfulTestTPOM" />
                 </methods>
             </class>
         </classes>
     </test>
 </suite>
+
