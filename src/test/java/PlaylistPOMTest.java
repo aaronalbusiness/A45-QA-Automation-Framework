@@ -10,8 +10,8 @@ public class PlaylistPOMTest extends BaseTest {
         // Prerequisite - at least one user-created playlist
         String playlistName = "Test Pro Playlist";
 
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
 
         loginPage.login();
         homePage.doubleClickPlaylist();

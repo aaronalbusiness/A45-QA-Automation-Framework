@@ -20,6 +20,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URL;
 import java.time.Duration;
 import java.util.List;
 
@@ -34,49 +35,43 @@ import org.testng.annotations.Parameters;
 public class BaseTest {
 
     public static WebDriver driver= null;
-
-    public static WebDriverWait wait;
-
+    public static WebDriverWait wait = null;
+    public static ThreadLocal<WebDriver> threadDriver= null;
     public static Actions actions = null;
-
     public static String url = "";
 
-    //public static WebDriverWait wait;
 
     String newPlaylistName = "Test Pro edited Playlist";
 
+    public static WebDriver getDriver() {
+
+        return threadDriver.get();
+    }
 
     @BeforeSuite
     static void setupClass() {
-        // WebDriverManager.chromedriver().setup();
-        //WebDriverManager.safaridriver();
-        //WebDriverManager.firefoxdriver().setup();
     }
 
     @BeforeMethod
     @Parameters({"BaseURL"})
 
     public void launchBrowser(String BaseURL) throws MalformedURLException {
-        // Added ChromeOptions argument below to fix websocket error
-//        ChromeOptions options = new ChromeOptions();
-//        options.addArguments("--remote-allow-origins=*");
-//        options.addArguments("--disable-notifications");
 
-        //driver = new ChromeDriver(options);
-        //driver = new SafariDriver();
-        //driver = new FirefoxDriver();
-
+        threadDriver = new ThreadLocal<>();
         driver = pickBrowser(System.getProperty("browser"));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-        actions = new Actions(driver);
+        threadDriver.set(driver);
+
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        actions = new Actions(getDriver());
         url = BaseURL;
         navigateToPage();
     }
 
-    @AfterMethod (enabled = false)
+    @AfterMethod //(enabled = false)
     public void tearDownBrowser() {
-        driver.quit();
+        getDriver().quit();
+        threadDriver.remove();
     }
 
     private static WebDriver pickBrowser(String browser) throws MalformedURLException {
@@ -119,7 +114,6 @@ public class BaseTest {
                 return driver = new ChromeDriver(options);
         }
     }
-
 
 
     // Helper methods to open page and login

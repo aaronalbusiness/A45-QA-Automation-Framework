@@ -28,62 +28,49 @@ public class LoginTest extends BaseTest {
 
         System.out.println("Running test method: " + method.getName());
 
-        provideEmail(userName);
-        providePassword(userPassword);
-        clickSubmit();
+        LoginPage loginPage = new LoginPage(getDriver());
+        loginPage.provideEmail(userName);
+        loginPage.providePassword(userPassword);
+        loginPage.clickSubmit();
 
-        Assert.assertEquals(driver.getCurrentUrl(), url);
+        Assert.assertEquals(getDriver().getCurrentUrl(), url);
     }
 
+
     @Test
-    public void loginSuccessfulTest(Method method) {
-        System.out.println("Running test method: " + method.getName());
+    public void loginSuccessfulTest() {
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
 
-        login("demo@class.com", "te$t$tudent");
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img.avatar")));
-
-        WebElement avatarImage = driver.findElement(By.cssSelector("img.avatar"));
-        Assert.assertTrue(avatarImage.isDisplayed());
-    }
-    // the methjod below introduces POM to replace the above method which doesnt implement POM
-    @Test
-    public void loginSuccessfulTestTPOM() {
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
-
-        loginPage.login("demo@class.com","te$t$tudent");  //Isnt this better practice then the line below which uses 3 methods?
-//        loginPage.provideEmail("demo@class.com").providePassword("te$t$tudent").clickSubmit();
-       Assert.assertTrue(homePage.IsAvatarDisplayed());
+        loginPage.login("demo@class.com","te$t$tudent");
+        Assert.assertTrue(homePage.IsAvatarDisplayed());
     }
 
     @Test
     public void loginInvalidEmailValidPassswordTest(Method method) {
-        System.out.println("Running test method: " + method.getName());
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
 
-        login("Invalid", "te$t$tudent");
-        Assert.assertEquals(driver.getCurrentUrl(), url);
+        loginPage.login("demo","te$t$tudent");
+        Assert.assertEquals(getDriver().getCurrentUrl(), url);
     }
 
 
     @Test
     public void loginValidEmailInvalidPassswordTest(Method method) {
-        System.out.println("Running test method: " + method.getName());
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
 
-        login("demo@class.com", "Invalid");
-        Assert.assertEquals(driver.getCurrentUrl(), url);
+        loginPage.login("demo@class.com","te$t");
+        Assert.assertEquals(getDriver().getCurrentUrl(), url);
     }
-
 
     @Test
     public static void loginEmptyEmailEmptyPasswordTest(Method method) {
-        System.out.println("Running test method: " + method.getName());
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
 
-        clickSubmit();
-        Assert.assertEquals(driver.getCurrentUrl(), url);
-//
-//        LoginPage loginPage = new LoginPage(driver);
-//        loginPage.provideEmail("").providePassword("").clickSubmit();
-//        Assert.assertEquals(driver.getCurrentUrl(), url);
-
+        loginPage.login("","");
+        Assert.assertEquals(getDriver().getCurrentUrl(), url);
     }
 }

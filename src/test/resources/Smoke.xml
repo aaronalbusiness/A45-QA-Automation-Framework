@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<!--<suite name="TestNG">-->
 <suite name="TestNG" parallel="methods" thread-count="2">
+
     <test name="Example Test 2" preserve-order="true">
         <parameter name="BaseURL" value="https://bbb.testpro.io/"/>
         <classes>
-<!--            <class name="LoginTest">-->
+            <class name="LoginTest">
 <!--                <methods>-->
-<!--                    <include name="loginSuccessfulTestTPOM" />-->
+<!--                    <include name="incorrectLoginProvidersTest" />-->
 <!--                </methods>-->
-<!--            </class>-->
-            <class name="LoginTest"/>
-
+            </class>
+<!--                <class name="LoginTest"/>-->
         </classes>
     </test>
 </suite>

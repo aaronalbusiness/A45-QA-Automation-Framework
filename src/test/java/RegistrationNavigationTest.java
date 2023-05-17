@@ -7,12 +7,11 @@ import org.testng.annotations.Test;
 public class RegistrationNavigationTest extends BaseTest {
     @Test
     public void registrationNavigation() {
-        WebElement registrationLink = driver.findElement(By.cssSelector("[id='hel']"));
+        WebElement registrationLink = getDriver().findElement(By.cssSelector("[id='hel']"));
         registrationLink.click();
 
         String registrationUrl = "https://bbb.testpro.io/registration.php";
-        Assert.assertEquals(driver.getCurrentUrl(), registrationUrl);
-
+        Assert.assertEquals(getDriver().getCurrentUrl(), registrationUrl);
     }
 }
 
