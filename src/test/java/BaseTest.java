@@ -22,6 +22,7 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.time.Duration;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -40,13 +41,7 @@ public class BaseTest {
     public static Actions actions = null;
     public static String url = "";
 
-
     String newPlaylistName = "Test Pro edited Playlist";
-
-    public static WebDriver getDriver() {
-
-        return threadDriver.get();
-    }
 
     @BeforeSuite
     static void setupClass() {
@@ -68,52 +63,86 @@ public class BaseTest {
         navigateToPage();
     }
 
-    @AfterMethod //(enabled = false)
+    @AfterMethod
     public void tearDownBrowser() {
-        getDriver().quit();
-        threadDriver.remove();
+        getDriver().quit(); //switched so LamdaTest worked
+        //threadDriver.remove();
+    }
+
+    public static WebDriver getDriver() {
+        return threadDriver.get();
+        //return driver;  //switched so LamdaTest worked
+    }
+
+    public static WebDriver lamdaTest() throws MalformedURLException {
+        String username = "alan.david.aaron";
+        String accessToken = "p7I8CppmpCA6Enh1cG2Atb9YxHEB3q9XILCieR0CPT9RifLevf";
+        String hubURL = "https://hub.lambdatest.com/wd/hub";
+
+        ChromeOptions browserOptions = new ChromeOptions();
+        browserOptions.setPlatformName("MacOS Ventura");
+        browserOptions.setBrowserVersion("114.0");
+        HashMap<String, Object> ltOptions = new HashMap<>();
+        ltOptions.put("username", username);
+        ltOptions.put("accessKey", accessToken);
+        ltOptions.put("project", "Untitled");
+        ltOptions.put("w3c", true);
+        ltOptions.put("plugin", "java-testNG");
+        browserOptions.setCapability("LT:Options", ltOptions);
+
+        return new RemoteWebDriver(new URL(hubURL), browserOptions);
+
     }
 
     private static WebDriver pickBrowser(String browser) throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
-        String gridURL = "http://10.0.0.153:4444/";//replaced with your grid url
-        //java -jar selenium-server-4.9.0.jar standalone
+        String gridURL = "http://10.0.0.153:4444/"; // Replace with your grid URL
 
         switch (browser) {
-            case "firefox":
+            case "firefox" -> {
                 WebDriverManager.firefoxdriver().setup();
                 return new FirefoxDriver();
-            case "MicrosoftEdge":
+            }
+            case "MicrosoftEdge" -> {
                 WebDriverManager.edgedriver().setup();
                 EdgeOptions edgeOptions = new EdgeOptions();
                 edgeOptions.addArguments("--remote-allow-origins=*");
                 edgeOptions.addArguments("--disable-notifications");
                 return new EdgeDriver(edgeOptions);
-            case "safari":
-                WebDriverManager.safaridriver().setup();//replaced with safari.setup
+            }
+            case "safari" -> {
+                WebDriverManager.safaridriver().setup();
                 return new SafariDriver();
-
-            case "grid-firefox":
+            }
+            case "grid-firefox" -> {
                 caps.setCapability("browserName", "firefox");
-                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
-            case "grid-chrome":
+                return new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
+            }
+            case "grid-chrome" -> {
                 caps.setCapability("browserName", "chrome");
-                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
-            case "grid-edge":
+                return new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
+            }
+            case "grid-edge" -> {
                 caps.setCapability("browserName", "MicrosoftEdge");
-                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
-            case "grid-safari":
+                return new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
+            }
+            case "grid-safari" -> {
                 caps.setCapability("browserName", "safari");
                 return new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
-
-            default:
+            }
+            case "cloud" -> {
+                return lamdaTest();
+            }
+            default -> {
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--remote-allow-origins=*");
                 options.addArguments("--disable-notifications");
-                return driver = new ChromeDriver(options);
+                return new ChromeDriver(options);
+            }
         }
     }
+
 
 
     // Helper methods to open page and login
