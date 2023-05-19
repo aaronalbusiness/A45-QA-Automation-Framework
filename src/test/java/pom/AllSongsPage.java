@@ -2,7 +2,7 @@ package pom;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+//import org.openqa.selenium.WebElement;
 //import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class AllSongsPage extends BasePage {
@@ -12,7 +12,7 @@ public class AllSongsPage extends BasePage {
 
     //store web elements using By keyword
     By firstSongElement = By.cssSelector(".all-songs tr.song-item:nth-child(1)");
-    By playOption = By.xpath("//span[contains(text(),'Play')]");//feel free to change the selector
+    private final By playOption = By.xpath("//span[contains(text(),'Play')]");//feel free to change the selector
     public void contextClickFirstSong() {
         contextClick(firstSongElement);
     }
