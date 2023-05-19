@@ -14,7 +14,9 @@ public class PlaySongTest extends BaseTest {
         loginPage.login();
         homePage.chooseAllSongList(); // Correct variable name
         allSongsPage.contextClickFirstSong(); // Correct variable name
-        allSongsPage.playSong(); // Correct variable name
+//        allSongsPage.playSong(); // Correct variable name
+        allSongsPage.clickPlayOption();
         Assert.assertTrue(allSongsPage.isSongPlaying()); // Correct variable name
+
     }
 }

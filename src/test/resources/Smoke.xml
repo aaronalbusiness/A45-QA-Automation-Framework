@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="TestNG">
-<!--<suite name="TestNG" parallel="methods" thread-count="2">-->
+<!--<suite name="TestNG">-->
+<suite name="TestNG" parallel="methods" thread-count="4">
 
     <test name="Example Test 2" preserve-order="true">
         <parameter name="BaseURL" value="https://bbb.testpro.io/"/>
         <classes>
-            <class name="ActionMethodsTest">
+<!--            <class name="ActionMethodsTest">-->
+
 <!--                <methods>-->
 <!--                    <include name="renamePlaylist" />-->
 <!--                </methods>-->
-            </class>
+<!--            </class>-->
+            <class name="LoginTest"/>
         </classes>
     </test>
 </suite>

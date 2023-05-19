@@ -13,23 +13,31 @@ public class BasePage {
     protected WebDriverWait wait;
     protected Actions actions;
 
+    By soundBarIcon = By.xpath("//div[@data-testid='sound-bar-play']");
+
     public BasePage(WebDriver givenDriver) {
         driver = givenDriver;
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         actions = new Actions(driver);
     }
 
-
     public WebElement findElement(By locator) {
             return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
+    public void click(By locator) {
+        findElement(locator).click();
     }
 
     public void doubleClick(By locator) {
         actions.doubleClick(findElement(locator)).perform();
     }
 
+    public void contextClick(By locator) {
+        actions.contextClick(findElement(locator)).perform();
+    }
+
     public boolean isSongPlaying() {
-        WebElement soundBar = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@data-testid='sound-bar-play']")));
-        return soundBar.isDisplayed();
+        return findElement(soundBarIcon).isDisplayed();
     }
 }

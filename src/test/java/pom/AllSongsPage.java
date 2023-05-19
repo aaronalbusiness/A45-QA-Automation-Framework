@@ -10,10 +10,14 @@ public class AllSongsPage extends BasePage {
         super(givenDriver);
     }
 
+    //store web elements using By keyword
+
+    By firstSongElement = By.cssSelector(".all-songs tr.song-item:nth-child(1)");
+
+    By playOption = By.xpath("//span[contains(text(),'Play')]");//feel free to change the selector
+
     public void contextClickFirstSong() {
-        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector(".all-songs tr.song-item:nth-child(1)")));
-        WebElement firstSong = driver.findElement(By.cssSelector(".all-songs tr.song-item:nth-child(1)"));
-        actions.contextClick(firstSong).perform();
+        contextClick(firstSongElement);
     }
 
     public void playSong() {
@@ -22,5 +26,9 @@ public class AllSongsPage extends BasePage {
 
         playNextButton.click();
         playButton.click();
+    }
+
+    public void clickPlayOption() {
+        click(playOption);
     }
 }

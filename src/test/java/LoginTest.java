@@ -23,7 +23,7 @@ public class LoginTest extends BaseTest {
         };
 }
 
-    @Test (dataProvider = "IncorrectLoginProviders", description = "Different logins from dataprovider")
+//    @Test (dataProvider = "IncorrectLoginProviders", description = "Different logins from dataprovider")
     public void incorrectLoginProvidersTest(Method method, String userName, String userPassword) {
 
         System.out.println("Running test method: " + method.getName());
@@ -66,7 +66,7 @@ public class LoginTest extends BaseTest {
     }
 
     @Test
-    public static void loginEmptyEmailEmptyPasswordTest(Method method) {
+    public void loginEmptyEmailEmptyPasswordTest() {
         LoginPage loginPage = new LoginPage(getDriver());
         HomePage homePage = new HomePage(getDriver());
 

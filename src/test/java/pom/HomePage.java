@@ -12,6 +12,7 @@ public class HomePage extends BasePage {
 
     private By firstPlaylist = By.cssSelector(".playlist:nth-child(3)");
     private By playlistNameField = By.cssSelector("[name='name']");
+    private By allSongsPage = By.xpath("//a[contains(text(),'All Songs')]");
 
 
 
@@ -32,6 +33,6 @@ public class HomePage extends BasePage {
     }
 
     public void chooseAllSongList() {
-
+        click(allSongsPage);
     }
 }

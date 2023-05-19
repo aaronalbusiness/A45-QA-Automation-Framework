@@ -49,7 +49,6 @@ public class BaseTest {
 
     @BeforeMethod
     @Parameters({"BaseURL"})
-
     public void launchBrowser(String BaseURL) throws MalformedURLException {
 
         threadDriver = new ThreadLocal<>();
@@ -66,7 +65,7 @@ public class BaseTest {
     @AfterMethod
     public void tearDownBrowser() {
         getDriver().quit(); //switched so LamdaTest worked
-        //threadDriver.remove();
+        threadDriver.remove();
     }
 
     public static WebDriver getDriver() {
@@ -81,7 +80,7 @@ public class BaseTest {
 
         ChromeOptions browserOptions = new ChromeOptions();
         browserOptions.setPlatformName("MacOS Ventura");
-        browserOptions.setBrowserVersion("114.0");
+        browserOptions.setBrowserVersion("113.0");
         HashMap<String, Object> ltOptions = new HashMap<>();
         ltOptions.put("username", username);
         ltOptions.put("accessKey", accessToken);
@@ -91,7 +90,6 @@ public class BaseTest {
         browserOptions.setCapability("LT:Options", ltOptions);
 
         return new RemoteWebDriver(new URL(hubURL), browserOptions);
-
     }
 
     private static WebDriver pickBrowser(String browser) throws MalformedURLException {
@@ -138,6 +136,7 @@ public class BaseTest {
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--remote-allow-origins=*");
                 options.addArguments("--disable-notifications");
+
                 return new ChromeDriver(options);
             }
         }
@@ -147,7 +146,7 @@ public class BaseTest {
 
     // Helper methods to open page and login
     public void navigateToPage() {
-        driver.get(url);
+        getDriver().get(url);
     }
     public void login(String email, String password) {
         provideEmail(email);
@@ -290,46 +289,6 @@ public class BaseTest {
         return notificationMessage.getText();
 
     }
-
-
-
-//
-//    public boolean doesPlaylistExist(){
-//        String newPlaylistName = "Test Pro edited Playlist";
-//        WebElement playlistElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()='"+newPlaylistName+"']")));
-//        return playlistElement.isDisplayed();
-//    }
-//
-//
-//
-//    public void choosePlayOption() {
-//        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector("li.playback")));
-//    }
-//
-
-//
-//    public static void clickSaveButton() {
-//        WebElement saveButton = driver.findElement(By.cssSelector("button[type='submit']"));
-//        saveButton.click();
-//    }
-//
-//    public static void provideProfileName(String randomName) {
-//        WebElement profileName = driver.findElement(By.cssSelector("[name='name']"));
-//        profileName.clear();
-//        profileName.sendKeys(randomName);
-//    }
-//    public static void provideCurrentPassword(String password) {
-//        WebElement currentPassword = driver.findElement(By.cssSelector("[name='current_password']"));
-//        currentPassword.clear();
-//        currentPassword.sendKeys(password);
-//    }
-//
-//    //public static String generateRandomName() {return UUID.randomUUID().toString().replace();
-//
-//    public static void clickAvatarIcon() {
-//        WebElement avatarIcon = driver.findElement(By.cssSelector("img.avatar"));
-//    }
-//
 }
 
 
