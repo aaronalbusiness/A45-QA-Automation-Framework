@@ -1,9 +1,9 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+//import org.openqa.selenium.By;
+//import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.annotations.DataProvider;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+//import org.openqa.selenium.support.ui.ExpectedConditions;
 import pagefactory.HomePage;
 import pagefactory.LoginPage;
 
@@ -23,7 +23,7 @@ public class LoginTest extends BaseTest {
         };
 }
 
-//    @Test (dataProvider = "IncorrectLoginProviders", description = "Different logins from dataprovider")
+   @Test (dataProvider = "IncorrectLoginProviders", description = "Different logins from dataprovider")
     public void incorrectLoginProvidersTest(Method method, String userName, String userPassword) {
 
         System.out.println("Running test method: " + method.getName());
@@ -47,9 +47,9 @@ public class LoginTest extends BaseTest {
     }
 
     @Test
-    public void loginInvalidEmailValidPassswordTest(Method method) {
+    public void loginInvalidEmailValidPassswordTest() {
         LoginPage loginPage = new LoginPage(getDriver());
-        HomePage homePage = new HomePage(getDriver());
+        //HomePage homePage = new HomePage(getDriver());
 
         loginPage.login("demo","te$t$tudent");
         Assert.assertEquals(getDriver().getCurrentUrl(), url);
@@ -57,9 +57,9 @@ public class LoginTest extends BaseTest {
 
 
     @Test
-    public void loginValidEmailInvalidPassswordTest(Method method) {
+    public void loginValidEmailInvalidPassswordTest() {
         LoginPage loginPage = new LoginPage(getDriver());
-        HomePage homePage = new HomePage(getDriver());
+        //HomePage homePage = new HomePage(getDriver());
 
         loginPage.login("demo@class.com","te$t");
         Assert.assertEquals(getDriver().getCurrentUrl(), url);
@@ -68,7 +68,7 @@ public class LoginTest extends BaseTest {
     @Test
     public void loginEmptyEmailEmptyPasswordTest() {
         LoginPage loginPage = new LoginPage(getDriver());
-        HomePage homePage = new HomePage(getDriver());
+        //HomePage homePage = new HomePage(getDriver());
 
         loginPage.login("","");
         Assert.assertEquals(getDriver().getCurrentUrl(), url);
