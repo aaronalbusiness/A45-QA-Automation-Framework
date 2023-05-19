@@ -38,12 +38,13 @@ public class LoginTest extends BaseTest {
 
 
     @Test
-    public void loginSuccessfulTest() {
+    public void loginSuccessfulTest() throws InterruptedException {
         LoginPage loginPage = new LoginPage(getDriver());
         HomePage homePage = new HomePage(getDriver());
 
         loginPage.login("demo@class.com","te$t$tudent");
         Assert.assertTrue(homePage.IsAvatarDisplayed());
+        Thread.sleep(10000);
     }
 
     @Test

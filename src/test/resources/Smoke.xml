@@ -10,7 +10,11 @@
 <!--                    <include name="renamePlaylist" />-->
 <!--                </methods>-->
 <!--            </class>-->
-            <class name="LoginTest"/>
+            <class name="LoginTest">
+                            <methods>
+                                <include name="loginSuccessfulTest"/>
+                            </methods>
+            </class>
         </classes>
     </test>
 </suite>
