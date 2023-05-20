@@ -23,17 +23,11 @@ test {
 
 }
 
-
-
-//task testSmoke(type: Test) {
+//task testSmokeParallel(type: Test) {
 //    useTestNG() {
-//        suites "src/test/resources/Regression.xml"
+//        suites "src/test/resources/SmokeParallel.xml"
+//        systemProperty("browser", System.getProperty("browser"))
 //    }
 //}
-//
 
-//task testRegression(type: Test) {
-//    useTestNG() {
-//        suites "src/test/resources/Regression.xml"
-//    }
-//}
+
