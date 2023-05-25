@@ -7,6 +7,7 @@
         <classes>
             <class name="ActionMethodsTest"/>
            <class name="BaseTest"/>
+            <class name="CucumberRunner"/>
             <class name="LoginTest"/>
             <class name="PlaylistPOMTest"/>
             <class name="PlaylistTest"/>

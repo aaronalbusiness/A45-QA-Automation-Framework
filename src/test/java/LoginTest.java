@@ -44,7 +44,7 @@ public class LoginTest extends BaseTest {
 
         loginPage.login("demo@class.com","te$t$tudent");
         Assert.assertTrue(homePage.IsAvatarDisplayed());
-        Thread.sleep(10000);
+        Thread.sleep(5000);
     }
 
     @Test
