@@ -34,6 +34,8 @@ public class LoginStepDefinitions {
 
     WebDriverWait wait;
 
+    String url = "https://bbb.testpro.io/";
+
     @Before
     public void launchBrowser() {
 
@@ -43,7 +45,7 @@ public class LoginStepDefinitions {
       options.addArguments("--disable-notifications");
       driver = new ChromeDriver(options);
       wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-      driver.get("https://bbb.testpro.io");
+      driver.get("https://bbb.testpro.io/");
 
     }
 
@@ -75,13 +77,14 @@ public class LoginStepDefinitions {
 
     @Then("I am logged in")
     public void iAmLoggedIn() {
-        Assert.assertTrue(wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img.avatar'"))).isDisplayed());
+        Assert.assertTrue(wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img.avatar"))).isDisplayed());//removed extra ' from locator
 
     }
 
     @Then("I am not logged in")
     public void iAmNotLoggedIn() {
-        Assert.assertEquals(getDriver().getCurrentUrl(), url);
+//        Assert.assertEquals(getDriver().getCurrentUrl(), url);
+        Assert.assertEquals(driver.getCurrentUrl(), url);
     }
 
 
