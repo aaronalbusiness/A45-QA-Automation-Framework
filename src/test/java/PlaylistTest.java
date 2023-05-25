@@ -9,7 +9,7 @@ public class PlaylistTest extends BaseTest {
         // This method only works if the playlist being selected to delete is empty
         String deletedPlaylistMsg = "Deleted playlist";
 
-        login("demo@class.com", "te$t$tudent");
+        login("aaronalbusiness@gmail.com", "te$t$tudent");
         openPlaylist();
         clickDeletePlaylistBtn();
         Assert.assertTrue(getDeletedPlaylistMsg().contains(deletedPlaylistMsg));
@@ -20,7 +20,7 @@ public class PlaylistTest extends BaseTest {
         // Must be a playlist named Test Pro edited Playlist and song being added can not be in playlist
         String newSongAddedNotificationText = "Added 1 song into";
 
-        login("demo@class.com", "te$t$tudent");
+        login("aaronalbusiness@gmail.com", "te$t$tudent");
         searchSong("Reactor");
         clickViewAllBtn();
         selectFirstSongResult();
@@ -34,7 +34,7 @@ public class PlaylistTest extends BaseTest {
     public void renamePlaylist() {
         // Prerequisite - at least one user-created playlist
 
-        login("demo@class.com", "te$t$tudent");
+        login("aaronalbusiness@gmail.com", "te$t$tudent");
         doubleClickPlaylist();
         enterNewPlayListName();
         Assert.assertTrue(doesPlaylistExist());

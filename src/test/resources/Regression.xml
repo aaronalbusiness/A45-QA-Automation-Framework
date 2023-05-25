@@ -9,9 +9,9 @@
            <class name="BaseTest"/>
             <class name="CucumberRunner"/>
             <class name="LoginTest"/>
-            <class name="PlaylistPOMTest"/>
+            <class name="POMPlaylistTest"/>
             <class name="PlaylistTest"/>
-            <class name="PlaySongTest"/>
+            <class name="POMPlaySongTest"/>
             <class name="RegistrationNavigationTest"/>
         </classes>
     </test>

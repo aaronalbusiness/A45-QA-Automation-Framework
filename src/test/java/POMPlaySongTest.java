@@ -2,9 +2,9 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pom.HomePage;
 import pom.LoginPage;
-import pom.AllSongsPage; // Import the AllSongsPage class
+import pom.AllSongsPage;
 
-public class PlaySongTest extends BaseTest {
+public class POMPlaySongTest extends BaseTest {
     @Test
     public void playSongTest() {
         LoginPage loginPage = new LoginPage(getDriver());
@@ -14,7 +14,7 @@ public class PlaySongTest extends BaseTest {
         loginPage.login();
         homePage.chooseAllSongList(); // Correct variable name
         allSongsPage.contextClickFirstSong(); // Correct variable name
-//        allSongsPage.playSong(); // Correct variable name
+//      allSongsPage.playSong(); // Correct variable name
         allSongsPage.clickPlayOption();
         Assert.assertTrue(allSongsPage.isSongPlaying()); // Correct variable name
 

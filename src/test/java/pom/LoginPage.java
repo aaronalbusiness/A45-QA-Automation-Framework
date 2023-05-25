@@ -14,8 +14,6 @@ public class LoginPage extends BasePage {
     private By submitBtn = By.cssSelector("button[type='submit']");
 
 
-
-
     public void provideEmail(String email) {
         findElement(emailField).sendKeys(email);
     }
@@ -29,7 +27,9 @@ public class LoginPage extends BasePage {
     }
 
     public void login() {
-        provideEmail("demo@class.com");
+        provideEmail("aaronalbusiness@gmail.com");
+       // provideEmail("demo@class.com");
+
         providePassword("te$t$tudent");
         clickSubmit();
     }

@@ -21,7 +21,8 @@ dependencies {
 
 test {
     useTestNG() {
-        suites "src/test/resources/CucumberLoginTests.xml"
+        //suites "src/test/resources/CucumberLoginTests.xml"
+        suites "src/test/resources/Regression.xml"
         systemProperty("browser", System.getProperty("browser"))
     }
 

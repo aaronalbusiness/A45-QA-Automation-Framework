@@ -41,7 +41,7 @@ public class BaseTest {
     public static Actions actions = null;
     public static String url = "";
 
-    String newPlaylistName = "Test Pro edited Playlist";
+    String newPlaylistName = "MyPlaylist";
 
     @BeforeSuite
     static void setupClass() {
@@ -65,7 +65,7 @@ public class BaseTest {
     @AfterMethod
     public void tearDownBrowser() {
         getDriver().quit(); //switched so LamdaTest worked
-        threadDriver.remove();
+       threadDriver.remove();
     }
 
     public static WebDriver getDriver() {

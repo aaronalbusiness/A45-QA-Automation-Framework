@@ -25,19 +25,25 @@ public class BasePage {
             return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
+    public boolean isSongPlaying() {
+
+        return findElement(soundBarIcon).isDisplayed();
+    }
+
+
+    //  Clicks
     public void click(By locator) {
         findElement(locator).click();
     }
 
     public void doubleClick(By locator) {
+
         actions.doubleClick(findElement(locator)).perform();
     }
 
     public void contextClick(By locator) {
+
         actions.contextClick(findElement(locator)).perform();
     }
 
-    public boolean isSongPlaying() {
-        return findElement(soundBarIcon).isDisplayed();
-    }
 }
