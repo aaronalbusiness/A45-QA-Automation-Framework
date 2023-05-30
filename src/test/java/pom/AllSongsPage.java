@@ -11,7 +11,7 @@ public class AllSongsPage extends BasePage {
 
     //store web elements using By keyword
     By firstSongElement = By.cssSelector(".all-songs tr.song-item:nth-child(1)");
-    private final By playOption = By.xpath("//span[contains(text(),'Play')]");//feel free to change the selector
+    By playOption = By.xpath("//span[contains(text(),'Play')]");//feel free to change the selector
     public void contextClickFirstSong() {
         contextClick(firstSongElement);
     }

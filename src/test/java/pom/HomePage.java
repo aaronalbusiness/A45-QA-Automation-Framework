@@ -12,9 +12,9 @@ public class HomePage extends BasePage {
         super(givenDriver);
     }
 
-    private By firstPlaylist = By.cssSelector(".playlist:nth-child(3)");
-    private By playlistNameField = By.cssSelector("[name='name']");
-    private By allSongsPage = By.xpath("//a[contains(text(),'All Songs')]");
+    By firstPlaylist = By.cssSelector(".playlist:nth-child(3)");
+    By playlistNameField = By.cssSelector("[name='name']");
+    By allSongsPage = By.xpath("//a[contains(text(),'All Songs')]");
 
     String newPlaylistName = "MyPlaylist";
 
@@ -28,12 +28,10 @@ public class HomePage extends BasePage {
         searchField.sendKeys(songTitleKeyword);
     }
 
-
     public void clickViewAllBtn () {
         WebElement viewAllSearchResults = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[data-test='view-all-songs-btn'][rounded][small][orange]")));
         viewAllSearchResults.click();
     }
-
 
     public void selectFirstSongResult ()  {
         WebElement firstSongResult = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("section#songResultsWrapper tr.song-item td.title")));
